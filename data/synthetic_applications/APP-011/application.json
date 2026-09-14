@@ -1,0 +1,8 @@
+{
+  "application_id": "APP-011",
+  "applicant_name": "Reese Donovan",
+  "requested_amount": 8000,
+  "loan_purpose": "Personal expenses",
+  "employment_status": "Unemployed",
+  "_scenario_note": "Unemployed applicant, no pay stub (missing income documentation)"
+}

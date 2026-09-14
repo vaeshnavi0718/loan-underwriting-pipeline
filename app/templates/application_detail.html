@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ state.application_id }}{% endblock %}
+{% block content %}
+{% set app = state.extracted_information.get("application", {}) %}
+<div class="card">
+  <h1>{{ state.application_id }}</h1>
+  <p class="muted" style="margin-top:-2px;">
+    <span class="badge badge-{{ state.status }}">{{ state.status.replace("_", " ") }}</span>
+    &nbsp;·&nbsp; current step: {{ state.current_step.replace("_", " ")|title }}
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="field-row"><span class="k">Applicant</span><span class="v">{{ app.get("applicant_name", "-") }}</span></div>
+  <div class="field-row"><span class="k">Requested amount</span><span class="v">${{ "%.2f"|format(app.get("requested_amount", 0)) }}</span></div>
+  <div class="field-row"><span class="k">Loan purpose</span><span class="v">{{ app.get("loan_purpose", "-") }}</span></div>
+  <div class="field-row"><span class="k">Employment status</span><span class="v">{{ app.get("employment_status", "-") }}</span></div>
+</div>
+
+{% if state.status == "NEEDS_DOCUMENTATION" %}
+<div class="card">
+  <h2>Additional Documentation Needed</h2>
+  {% if state.missing_information %}
+  <p class="muted">Missing: <strong style="color:var(--text)">{{ state.missing_information|join(", ") }}</strong></p>
+  {% endif %}
+  <form action="/applications/{{ state.application_id }}/documents" method="post" enctype="multipart/form-data">
+    <div class="grid">
+      {% for doc in doc_fields %}
+      <div><label>{{ doc.replace("_", " ")|title }} (PDF)</label><input type="file" name="{{ doc }}" accept="application/pdf"></div>
+      {% endfor %}
+    </div>
+    <p style="margin-top:18px;"><button type="submit">Upload &amp; Resume Pipeline</button></p>
+  </form>
+</div>
+{% endif %}
+
+{% if state.status == "AWAITING_HUMAN_DECISION" %}
+<div class="card">
+  <h2>Ready for Human Review</h2>
+  <p class="muted">The Review and Reasoning Agent has produced a report. A human must make the final decision.</p>
+  <a class="btn" href="/applications/{{ state.application_id }}/review">Open Review Checkpoint</a>
+</div>
+{% endif %}
+
+{% if state.human_decision %}
+<div class="card">
+  <h2>Final Decision</h2>
+  <p><span class="badge badge-{{ state.status }}">{{ state.human_decision.decision.replace("_", " ") }}</span>
+    <span class="muted"> &nbsp;{{ state.human_decision.timestamp }}</span></p>
+  {% if state.human_decision.notes %}<p class="muted" style="margin-top:10px;">Notes: {{ state.human_decision.notes }}</p>{% endif %}
+</div>
+{% endif %}
+
+<div class="card">
+  <h2>Uploaded Documents</h2>
+  {% if state.uploaded_documents %}
+  {% for doc_type, fname in state.uploaded_documents.items() %}
+  <div class="field-row"><span class="k">{{ doc_type.replace("_", " ")|title }}</span><span class="v">{{ fname }}</span></div>
+  {% endfor %}
+  {% else %}<p class="muted">None uploaded yet.</p>{% endif %}
+</div>
+{% endblock %}

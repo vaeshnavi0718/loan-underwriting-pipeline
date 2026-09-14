@@ -1,0 +1,8 @@
+{
+  "application_id": "APP-012",
+  "applicant_name": "Jordan Ashworth",
+  "requested_amount": 5000,
+  "loan_purpose": "Auto purchase",
+  "employment_status": "Employed part-time",
+  "_scenario_note": "Applicant age inconsistency (ID indicates a minor, born 2010)"
+}

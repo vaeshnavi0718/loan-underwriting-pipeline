@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}New Application{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Submit a Loan Application</h1>
+  <p class="muted">Documents are optional at submission time — the Data Enrichment Agent will flag anything missing and pause the application for documentation.</p>
+  <form action="/applications" method="post" enctype="multipart/form-data">
+    <label>Applicant Name</label>
+    <input type="text" name="applicant_name" required>
+
+    <label>Requested Amount ($)</label>
+    <input type="number" name="requested_amount" step="0.01" required>
+
+    <label>Loan Purpose</label>
+    <input type="text" name="loan_purpose" required>
+
+    <label>Employment Status</label>
+    <select name="employment_status" required>
+      <option value="Employed full-time">Employed full-time</option>
+      <option value="Employed part-time">Employed part-time</option>
+      <option value="Self-employed">Self-employed</option>
+      <option value="Unemployed">Unemployed</option>
+    </select>
+
+    <div class="divider"></div>
+
+    <div class="grid">
+      <div><label>Pay Stub (PDF)</label><input type="file" name="pay_stub" accept="application/pdf"></div>
+      <div><label>Bank Statement (PDF)</label><input type="file" name="bank_statement" accept="application/pdf"></div>
+      <div><label>Credit Report (PDF)</label><input type="file" name="credit_report" accept="application/pdf"></div>
+      <div><label>ID Document (PDF)</label><input type="file" name="id_document" accept="application/pdf"></div>
+    </div>
+
+    <p style="margin-top:20px;"><button type="submit">Submit Application</button></p>
+  </form>
+</div>
+
+<div class="card">
+  <h2>Applications ({{ applications|length }})</h2>
+  {% if not applications %}
+    <p class="muted">No applications yet.</p>
+  {% else %}
+  <table>
+    <tr><th>ID</th><th>Applicant</th><th>Status</th><th>Step</th><th></th></tr>
+    {% for s in applications %}
+    <tr>
+      <td>{{ s.application_id }}</td>
+      <td>{{ s.extracted_information.get("application", {}).get("applicant_name", "-") }}</td>
+      <td><span class="badge badge-{{ s.status }}">{{ s.status.replace("_", " ") }}</span></td>
+      <td class="muted">{{ s.current_step.replace("_", " ") }}</td>
+      <td><a class="btn secondary" href="/applications/{{ s.application_id }}">Open</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</div>
+{% endblock %}
