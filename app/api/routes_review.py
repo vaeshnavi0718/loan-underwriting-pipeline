@@ -24,7 +24,7 @@ def review_page(request: Request, application_id: str):
         raise HTTPException(status_code=404, detail="Application not found")
     if state.status != Status.AWAITING_HUMAN_DECISION:
         return RedirectResponse(url=f"/applications/{application_id}")
-    return templates.TemplateResponse("review.html", {"request": request, "state": state})
+    return templates.TemplateResponse(request, "review.html", {"state": state})
 
 
 @router.post("/applications/{application_id}/decision")
