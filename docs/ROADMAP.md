@@ -12,7 +12,8 @@ The goal is to measure how well the pipeline's AI parts work, then use those mea
 
 The Review Agent is the only agent that calls an LLM. Each synthetic application has a planted issue (or none), which becomes its expected behavior.
 
-- [ ] Case file with what each application's report must and must not flag
+- [x] Case file with what each application's report must and must not flag
+- [x] Status grader (code): the pipeline stops where the case file expects
 - [ ] Grounding grader (code): every dollar amount in the report exists in the input
 - [ ] No-decision grader (code + LLM judge): the report never recommends approve or deny
 - [ ] Issue recall grader (LLM judge, must quote evidence)
