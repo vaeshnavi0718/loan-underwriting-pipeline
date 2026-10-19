@@ -24,7 +24,7 @@ DOC_FIELD_NAMES = ["pay_stub", "bank_statement", "credit_report", "id_document"]
 @router.get("/")
 def index(request: Request):
     applications = sorted(ApplicationState.list_all(), key=lambda s: s.application_id)
-    return templates.TemplateResponse("index.html", {"request": request, "applications": applications})
+    return templates.TemplateResponse(request, "index.html", {"applications": applications})
 
 
 async def _save_uploaded_docs(application_id: str, files: dict[str, UploadFile | None]) -> dict[str, str]:
@@ -83,7 +83,7 @@ def application_detail(request: Request, application_id: str):
     if state is None:
         raise HTTPException(status_code=404, detail="Application not found")
     return templates.TemplateResponse(
-        "application_detail.html", {"request": request, "state": state, "doc_fields": DOC_FIELD_NAMES}
+        request, "application_detail.html", {"state": state, "doc_fields": DOC_FIELD_NAMES}
     )
 
 
