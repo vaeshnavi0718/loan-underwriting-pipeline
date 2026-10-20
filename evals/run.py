@@ -1,8 +1,8 @@
 """
 Eval runner.
 
-    python -m evals.run --suite schema
-    python -m evals.run --suite schema --repeats 3
+    python -m evals.run --suite review
+    python -m evals.run --suite review --repeats 3
 
 Runs every synthetic application through the pipeline, applies the suite's
 graders, prints a per-case table plus every failure, and writes the full
@@ -15,12 +15,13 @@ import os
 import sys
 from datetime import datetime, timezone
 
-from evals.graders import schema
-from evals.harness import list_cases, run_case
+from evals.cases import load_cases
+from evals.graders import schema, status
+from evals.harness import run_case
 
-# suite name -> {grader name: grade function}
+# suite name -> {grader name: grade(result, case) function}
 SUITES = {
-    "schema": {"schema": schema.grade},
+    "review": {"status": status.grade, "schema": schema.grade},
 }
 
 RESULTS_DIR = os.path.join(os.path.dirname(__file__), "results")
@@ -34,7 +35,11 @@ def main() -> int:
     args = parser.parse_args()
 
     graders = SUITES[args.suite]
-    cases = args.cases or list_cases()
+    all_cases = load_cases()
+    unknown = sorted(set(args.cases or []) - set(all_cases))
+    if unknown:
+        parser.error(f"no such case(s): {unknown}")
+    cases = args.cases or sorted(all_cases)
     model = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b") if os.environ.get("GROQ_API_KEY") else "fallback (no GROQ_API_KEY)"
     print(f"suite={args.suite}  model={model}  {len(cases)} cases x {args.repeats} runs\n")
 
@@ -42,14 +47,14 @@ def main() -> int:
     for case_id in cases:
         for run in range(1, args.repeats + 1):
             result = run_case(case_id)
-            grades = {name: grade(result) for name, grade in graders.items()}
+            grades = {name: grade(result, all_cases[case_id]) for name, grade in graders.items()}
             rows.append({"case_id": case_id, "run": run, "result": result, "grades": grades})
             for name, g in grades.items():
                 if g is not None and not g["passed"]:
                     failures.append(f"{case_id} run {run}  {name}: {g['detail']}")
 
     totals = {}
-    print(f"{'case':<9}{'status':<26}" + "".join(f"{n:>14}" for n in graders))
+    print(f"{'case':<9}{'stopped at':<26}" + "".join(f"{n:>14}" for n in graders))
     for case_id in cases:
         case_rows = [r for r in rows if r["case_id"] == case_id]
         line = f"{case_id:<9}{case_rows[0]['result']['status']:<26}"

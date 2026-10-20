@@ -21,4 +21,4 @@ jobs:
       - name: Unit and pipeline tests
         run: pytest -v
       - name: Code-graded evals
-        run: python -m evals.run --suite schema
+        run: python -m evals.run --suite review

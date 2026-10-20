@@ -1,0 +1,1505 @@
+{
+  "suite": "review",
+  "model": "openai/gpt-oss-120b",
+  "repeats": 1,
+  "totals": {
+    "status": {
+      "passed": 12,
+      "applicable": 12
+    },
+    "schema": {
+      "passed": 10,
+      "applicable": 10
+    }
+  },
+  "runs": [
+    {
+      "case_id": "APP-001",
+      "run": 1,
+      "result": {
+        "case_id": "APP-001",
+        "scenario": "Strong applicant",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Jordan Price applies for a $15,000 debt\u2011consolidation loan with full\u2011time employment, a strong credit score, and low debt\u2011to\u2011income ratios, while cash\u2011flow stability is assessed as moderate.",
+          "key_findings": [
+            "Credit score 782 (low credit risk)",
+            "Debt\u2011to\u2011income ratio 0.09 (low)",
+            "Loan\u2011to\u2011income ratio 0.174 (low)",
+            "Full\u2011time employment verified, gross monthly income $7,200",
+            "Existing monthly debt $650 with no recent late payments",
+            "Cash\u2011flow stability rated moderate"
+          ],
+          "inconsistencies": [],
+          "risk_explanation": "The overall risk is considered moderate mainly because the applicant\u2019s cash\u2011flow stability is only moderate, even though credit quality, debt levels, and income stability are strong. The moderate cash\u2011flow rating suggests some variability in the applicant\u2019s bank deposits that could affect repayment consistency, but the low debt burden and high credit score mitigate this concern.",
+          "narrative_report": "Applicant Jordan Price seeks a $15,000 loan for debt consolidation. The extracted documents confirm full\u2011time employment at Cascade Logistics Inc. with a verified gross monthly income of $7,200 and an average bank balance of $9,400. Credit data shows a score of 782, no late payments in the past 24 months, and existing monthly debt of $650, resulting in a low debt\u2011to\u2011income ratio of 0.09.\n\nIncome stability is rated low risk, with employment verified and no income discrepancies identified. Cash\u2011flow analysis rates stability as moderate, indicating some fluctuation in monthly deposits despite a healthy average balance. The loan\u2011to\u2011income ratio of 0.174 falls within a low\u2011risk band.\n\nOverall, the applicant presents strong credit and debt metrics, but the moderate cash\u2011flow rating introduces a balanced level of risk that the reviewer should weigh alongside the applicant\u2019s solid employment and repayment history."
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-001-298C7E",
+            "applicant_name": "Jordan Price",
+            "requested_amount": 15000,
+            "loan_purpose": "Debt consolidation",
+            "employment_status": "Employed full-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-001-298C7E",
+              "applicant_name": "Jordan Price",
+              "requested_amount": 15000,
+              "loan_purpose": "Debt consolidation",
+              "employment_status": "Employed full-time"
+            },
+            "pay_stub": {
+              "employer_name": "Cascade Logistics Inc.",
+              "gross_monthly_income": 7200.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 9400.0,
+              "monthly_deposits": 7150.0
+            },
+            "credit_report": {
+              "credit_score": 782,
+              "existing_monthly_debt": 650.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "id_document": {
+              "name": "Jordan Price",
+              "date_of_birth": "1988-03-14",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Cascade Logistics Inc.",
+              "note": "Mock registry lookup confirms an active record for 'Cascade Logistics Inc.'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 9400.0,
+              "monthly_deposits": 7150.0,
+              "cashflow_stability": "moderate"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 782,
+              "existing_monthly_debt": 650.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "income_discrepancy": null,
+            "identity_flag": null,
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.09,
+              "band": "low",
+              "existing_monthly_debt": 650.0,
+              "gross_monthly_income": 7200.0
+            },
+            "credit_risk": {
+              "score": 782,
+              "band": "low",
+              "payment_history": "No late payments in 24 months",
+              "recent_late_payments": false
+            },
+            "income_stability": {
+              "band": "low",
+              "employment_status": "Employed full-time",
+              "employment_verified": true,
+              "income_discrepancy": null
+            },
+            "cashflow_risk": {
+              "band": "moderate",
+              "cashflow_stability": "moderate",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 9400.0,
+              "monthly_deposits": 7150.0
+            },
+            "loan_exposure": {
+              "requested_amount": 15000,
+              "annual_income": 86400.0,
+              "loan_to_income_ratio": 0.174,
+              "band": "low"
+            },
+            "overall_risk_level": "moderate"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    },
+    {
+      "case_id": "APP-002",
+      "run": 1,
+      "result": {
+        "case_id": "APP-002",
+        "scenario": "High debt-to-income",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Morgan Ellis applies for a $25,000 home\u2011improvement loan with full\u2011time employment and a verified identity. The applicant\u2019s credit score is 701, but debt\u2011to\u2011income and cash\u2011flow metrics raise concerns.",
+          "key_findings": [
+            "Gross monthly income $5,100 (full\u2011time employment verified)",
+            "Existing monthly debt $2,850 leading to a 56% debt\u2011to\u2011income ratio (high)",
+            "Credit score 701 (moderate risk) with no recent late payments",
+            "Average bank balance $2,100 and low cash\u2011flow stability (high cashflow risk)",
+            "Loan\u2011to\u2011income ratio 40% (moderate)"
+          ],
+          "inconsistencies": [],
+          "risk_explanation": "The applicant earns a stable salary, but a large portion of that income is already committed to existing debt, pushing the debt\u2011to\u2011income ratio into the high\u2011risk band. While the credit score is acceptable and payment history is clean, the bank\u2011statement analysis shows low cash\u2011flow stability, indicating that the applicant\u2019s disposable cash each month may be limited. Together, these factors contribute to an overall high risk rating for the loan.",
+          "narrative_report": "Applicant Overview:\nMorgan Ellis is seeking a $25,000 loan for home improvement. The applicant is employed full\u2011time at Northbridge Manufacturing, with a verified gross monthly income of $5,100 and a confirmed identity.\n\nFinancial Profile:\n- Income: $5,100 gross per month ($61,200 annually) and employment status is verified.\n- Debt: Existing monthly debt obligations total $2,850, resulting in a debt\u2011to\u2011income ratio of 56%, which falls into the high\u2011risk band.\n- Credit: Credit score is 701, placing the applicant in the moderate credit\u2011risk band. Payment history shows no late payments in the past 24 months.\n- Cash Flow: Bank statements indicate an average monthly balance of $2,100 and monthly deposits of $5,050, but the cash\u2011flow stability is rated low, suggesting limited buffer after regular expenses.\n- Loan Exposure: The requested amount represents 40% of annual income, a moderate loan\u2011to\u2011income ratio.\n\nRisk Assessment Summary:\nThe applicant demonstrates stable employment and a clean recent payment history, which are positive factors. However, the high debt\u2011to\u2011income ratio and low cash\u2011flow stability indicate that a significant share of income is already allocated to debt, leaving limited discretionary cash. These concerns drive the overall risk level to high, despite a moderate credit score.\n\nThe reviewer should consider both the strengths (verified income, good credit history) and the concerns (high debt burden and cash\u2011flow volatility) when making a final decision."
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-002-0C251D",
+            "applicant_name": "Morgan Ellis",
+            "requested_amount": 25000,
+            "loan_purpose": "Home improvement",
+            "employment_status": "Employed full-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-002-0C251D",
+              "applicant_name": "Morgan Ellis",
+              "requested_amount": 25000,
+              "loan_purpose": "Home improvement",
+              "employment_status": "Employed full-time"
+            },
+            "pay_stub": {
+              "employer_name": "Northbridge Manufacturing",
+              "gross_monthly_income": 5100.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 2100.0,
+              "monthly_deposits": 5050.0
+            },
+            "credit_report": {
+              "credit_score": 701,
+              "existing_monthly_debt": 2850.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "id_document": {
+              "name": "Morgan Ellis",
+              "date_of_birth": "1979-11-02",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Northbridge Manufacturing",
+              "note": "Mock registry lookup confirms an active record for 'Northbridge Manufacturing'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 2100.0,
+              "monthly_deposits": 5050.0,
+              "cashflow_stability": "low"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 701,
+              "existing_monthly_debt": 2850.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "income_discrepancy": null,
+            "identity_flag": null,
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.559,
+              "band": "high",
+              "existing_monthly_debt": 2850.0,
+              "gross_monthly_income": 5100.0
+            },
+            "credit_risk": {
+              "score": 701,
+              "band": "moderate",
+              "payment_history": "No late payments in 24 months",
+              "recent_late_payments": false
+            },
+            "income_stability": {
+              "band": "low",
+              "employment_status": "Employed full-time",
+              "employment_verified": true,
+              "income_discrepancy": null
+            },
+            "cashflow_risk": {
+              "band": "high",
+              "cashflow_stability": "low",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 2100.0,
+              "monthly_deposits": 5050.0
+            },
+            "loan_exposure": {
+              "requested_amount": 25000,
+              "annual_income": 61200.0,
+              "loan_to_income_ratio": 0.408,
+              "band": "moderate"
+            },
+            "overall_risk_level": "high"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    },
+    {
+      "case_id": "APP-003",
+      "run": 1,
+      "result": {
+        "case_id": "APP-003",
+        "scenario": "Low credit score",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Casey Nolan is a full\u2011time employee with verified income of $4,300 per month seeking a $10,000 loan for auto repair. While debt\u2011to\u2011income appears low, credit score and cash\u2011flow indicators raise significant concerns.",
+          "key_findings": [
+            "Full\u2011time employment at Riverstone Retail verified",
+            "Gross monthly income $4,300; monthly bank deposits $4,250",
+            "Debt\u2011to\u2011income ratio 18\u202f% (low)",
+            "Credit score 571, classified as critical with two 30\u2011day\u2011late payments in the past year",
+            "Bank cash\u2011flow analysis shows low stability and high cash\u2011flow risk",
+            "Overall risk level marked as critical"
+          ],
+          "inconsistencies": [],
+          "risk_explanation": "The applicant\u2019s income and debt levels suggest they could comfortably cover the loan payments, but the very low credit score and recent late payments indicate a history of missed obligations. In addition, the bank\u2011statement analysis shows unstable cash flow, meaning the applicant\u2019s available funds fluctuate and may not reliably support new debt. Together, these factors create a high overall risk despite the low debt\u2011to\u2011income ratio.",
+          "narrative_report": "Applicant Overview:\nCasey Nolan, born 1995-06-21, is applying for a $10,000 loan to fund auto repairs. The application lists full\u2011time employment, which has been independently verified through a mock registry lookup confirming the employer, Riverstone Retail.\n\nIncome and Debt:\nThe pay stub shows a gross monthly income of $4,300, and the bank statement reflects average monthly deposits of $4,250, indicating consistency between reported earnings and actual cash inflows. Existing monthly debt obligations total $780, resulting in a debt\u2011to\u2011income ratio of roughly 18\u202f%, which falls into a low\u2011risk band.\n\nCredit Profile:\nThe credit report assigns a score of 571, placing the applicant in the critical credit\u2011risk band. The report also notes two payments that were more than 30 days late within the last 12 months, confirming recent delinquency.\n\nCash\u2011Flow Stability:\nAutomated cash\u2011flow analysis rates the applicant\u2019s cash\u2011flow stability as low, flagging a high cash\u2011flow risk. Although monthly deposits are near the gross income figure, the low average balance ($1,300) suggests limited financial cushion.\n\nRisk Assessment Summary:\nWhile the applicant\u2019s debt load relative to income is modest, the combination of a critical credit score, recent late payments, and unstable cash\u2011flow creates a heightened overall risk classification. These concerns should be weighed carefully alongside the applicant\u2019s verified employment and income stability.\n"
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-003-C81076",
+            "applicant_name": "Casey Nolan",
+            "requested_amount": 10000,
+            "loan_purpose": "Auto repair",
+            "employment_status": "Employed full-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-003-C81076",
+              "applicant_name": "Casey Nolan",
+              "requested_amount": 10000,
+              "loan_purpose": "Auto repair",
+              "employment_status": "Employed full-time"
+            },
+            "pay_stub": {
+              "employer_name": "Riverstone Retail",
+              "gross_monthly_income": 4300.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 1300.0,
+              "monthly_deposits": 4250.0
+            },
+            "credit_report": {
+              "credit_score": 571,
+              "existing_monthly_debt": 780.0,
+              "payment_history": "2 payments 30+ days late in last 12 months"
+            },
+            "id_document": {
+              "name": "Casey Nolan",
+              "date_of_birth": "1995-06-21",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Riverstone Retail",
+              "note": "Mock registry lookup confirms an active record for 'Riverstone Retail'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 1300.0,
+              "monthly_deposits": 4250.0,
+              "cashflow_stability": "low"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 571,
+              "existing_monthly_debt": 780.0,
+              "payment_history": "2 payments 30+ days late in last 12 months"
+            },
+            "income_discrepancy": null,
+            "identity_flag": null,
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.181,
+              "band": "low",
+              "existing_monthly_debt": 780.0,
+              "gross_monthly_income": 4300.0
+            },
+            "credit_risk": {
+              "score": 571,
+              "band": "critical",
+              "payment_history": "2 payments 30+ days late in last 12 months",
+              "recent_late_payments": true
+            },
+            "income_stability": {
+              "band": "low",
+              "employment_status": "Employed full-time",
+              "employment_verified": true,
+              "income_discrepancy": null
+            },
+            "cashflow_risk": {
+              "band": "high",
+              "cashflow_stability": "low",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 1300.0,
+              "monthly_deposits": 4250.0
+            },
+            "loan_exposure": {
+              "requested_amount": 10000,
+              "annual_income": 51600.0,
+              "loan_to_income_ratio": 0.194,
+              "band": "low"
+            },
+            "overall_risk_level": "critical"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    },
+    {
+      "case_id": "APP-004",
+      "run": 1,
+      "result": {
+        "case_id": "APP-004",
+        "scenario": "Missing information (no bank statement uploaded)",
+        "status": "NEEDS_DOCUMENTATION",
+        "review_report": {},
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-004-446585",
+            "applicant_name": "Riley Thompson",
+            "requested_amount": 12000,
+            "loan_purpose": "Medical expenses",
+            "employment_status": "Employed full-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-004-446585",
+              "applicant_name": "Riley Thompson",
+              "requested_amount": 12000,
+              "loan_purpose": "Medical expenses",
+              "employment_status": "Employed full-time"
+            },
+            "pay_stub": {
+              "employer_name": "Union Health Partners",
+              "gross_monthly_income": 6000.0
+            },
+            "credit_report": {
+              "credit_score": 690,
+              "existing_monthly_debt": 900.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "id_document": {
+              "name": "Riley Thompson",
+              "date_of_birth": "1990-01-09",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Union Health Partners",
+              "note": "Mock registry lookup confirms an active record for 'Union Health Partners'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "unavailable",
+              "reason": "No bank statement data available to analyze"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 690,
+              "existing_monthly_debt": 900.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "income_discrepancy": null,
+            "identity_flag": null,
+            "additional_documentation_required": true
+          },
+          "missing_information": [
+            "bank_statement"
+          ],
+          "risk_assessment": {}
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": null
+      }
+    },
+    {
+      "case_id": "APP-005",
+      "run": 1,
+      "result": {
+        "case_id": "APP-005",
+        "scenario": "Income discrepancy (pay stub vs. bank deposits mismatch)",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Avery Kim has a verified full\u2011time employment and a credit score of 715, but there is a notable gap between the declared gross income and the actual bank deposits, leading to a high overall risk rating.",
+          "key_findings": [
+            "Employment at Delta Freight Co. verified and full\u2011time",
+            "Credit score 715 with no late payments in the past 24 months",
+            "Debt\u2011to\u2011income ratio low at 13.8%",
+            "Requested loan amount $18,000 represents 18.8% of annual income",
+            "Observed monthly deposits $3,100 versus stated gross income $8,000 (61% shortfall)"
+          ],
+          "inconsistencies": [
+            "Stated gross monthly income $8,000 does not align with observed monthly deposits $3,100, indicating a 61.3% shortfall",
+            "Income stability band marked as \"high\" despite the significant income discrepancy",
+            "Overall risk level labeled \"high\" while debt\u2011to\u2011income and credit bands are low to moderate"
+          ],
+          "risk_explanation": "The applicant shows strong employment verification and a solid credit history, which reduces credit risk. However, the large difference between the claimed salary and the actual cash flowing into the bank suggests that the income may not be as reliable as reported. This uncertainty, combined with only moderate cash\u2011flow stability, pushes the overall risk assessment to a high level despite low debt\u2011to\u2011income and a decent credit score.",
+          "narrative_report": "Avery Kim has applied for an $18,000 loan to consolidate debt. The applicant\u2019s employment with Delta Freight Co. is verified as full\u2011time, and the pay stub shows a gross monthly income of $8,000. Credit data indicates a score of 715, no late payments in the last two years, and existing monthly debt of $1,100, resulting in a low debt\u2011to\u2011income ratio of 13.8%.\n\nBank statement analysis reveals an average monthly balance of $3,200 and monthly deposits of $3,100. This creates a significant discrepancy: the observed deposits are only about 39% of the stated gross income, a shortfall of 61.3%. The cash\u2011flow stability is rated as moderate, and the income stability band is marked high, which appears inconsistent given the deposit shortfall.\n\nRisk assessment components show a moderate credit risk, low loan\u2011to\u2011income exposure, and moderate cash\u2011flow risk. The overall risk level is flagged as high, primarily driven by the income discrepancy and the uncertainty around the applicant\u2019s true cash inflow. These factors should be weighed carefully alongside the applicant\u2019s strong employment verification and credit history when making a final underwriting decision."
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-005-E24594",
+            "applicant_name": "Avery Kim",
+            "requested_amount": 18000,
+            "loan_purpose": "Debt consolidation",
+            "employment_status": "Employed full-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-005-E24594",
+              "applicant_name": "Avery Kim",
+              "requested_amount": 18000,
+              "loan_purpose": "Debt consolidation",
+              "employment_status": "Employed full-time"
+            },
+            "pay_stub": {
+              "employer_name": "Delta Freight Co.",
+              "gross_monthly_income": 8000.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 3200.0,
+              "monthly_deposits": 3100.0
+            },
+            "credit_report": {
+              "credit_score": 715,
+              "existing_monthly_debt": 1100.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "id_document": {
+              "name": "Avery Kim",
+              "date_of_birth": "1985-09-30",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Delta Freight Co.",
+              "note": "Mock registry lookup confirms an active record for 'Delta Freight Co.'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 3200.0,
+              "monthly_deposits": 3100.0,
+              "cashflow_stability": "moderate"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 715,
+              "existing_monthly_debt": 1100.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "income_discrepancy": {
+              "stated_gross_monthly_income": 8000.0,
+              "observed_monthly_deposits": 3100.0,
+              "shortfall_pct": 61.3
+            },
+            "identity_flag": null,
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.138,
+              "band": "low",
+              "existing_monthly_debt": 1100.0,
+              "gross_monthly_income": 8000.0
+            },
+            "credit_risk": {
+              "score": 715,
+              "band": "moderate",
+              "payment_history": "No late payments in 24 months",
+              "recent_late_payments": false
+            },
+            "income_stability": {
+              "band": "high",
+              "employment_status": "Employed full-time",
+              "employment_verified": true,
+              "income_discrepancy": {
+                "stated_gross_monthly_income": 8000.0,
+                "observed_monthly_deposits": 3100.0,
+                "shortfall_pct": 61.3
+              }
+            },
+            "cashflow_risk": {
+              "band": "moderate",
+              "cashflow_stability": "moderate",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 3200.0,
+              "monthly_deposits": 3100.0
+            },
+            "loan_exposure": {
+              "requested_amount": 18000,
+              "annual_income": 96000.0,
+              "loan_to_income_ratio": 0.188,
+              "band": "low"
+            },
+            "overall_risk_level": "high"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    },
+    {
+      "case_id": "APP-006",
+      "run": 1,
+      "result": {
+        "case_id": "APP-006",
+        "scenario": "Unverified ID document",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Applicant Drew Sanders seeks a $9,000 auto loan with full\u2011time employment and a solid credit profile, but the identity document could not be verified.",
+          "key_findings": [
+            "Requested amount: $9,000 for an auto purchase",
+            "Gross monthly income: $5,400 (verified employment)",
+            "Debt\u2011to\u2011income ratio: 11% (low)",
+            "Credit score: 730 with no recent late payments",
+            "Average monthly bank balance: $4,200; cashflow stability assessed as moderate",
+            "Identity document status: not verified"
+          ],
+          "inconsistencies": [
+            "ID document could not be verified despite matching name"
+          ],
+          "risk_explanation": "The applicant shows low debt burden and a strong credit score, which lowers credit risk. Employment is confirmed and income appears stable. However, the bank\u2011cashflow analysis rates cashflow as only moderate, and the inability to verify the identity document adds a layer of uncertainty. These factors combine to place the overall risk at a moderate level.",
+          "narrative_report": "Drew Sanders has applied for a $9,000 loan to purchase a vehicle. The applicant is employed full\u2011time at Bright Path Consulting, with a verified gross monthly income of $5,400. Debt\u2011to\u2011income calculations show a low ratio of 11%, and the credit report indicates a score of 730 with a clean payment history over the past two years. Bank statement analysis reveals an average monthly balance of $4,200 and monthly deposits of $5,350, leading the cashflow model to label stability as moderate.\n\nThe primary concern is the identity document, which could not be verified even though the name matches the application. No other discrepancies were found between the extracted data and the enrichment results. Overall, the applicant presents strong income and credit characteristics, but the moderate cashflow rating and unverified ID introduce additional risk considerations. This balanced view should be taken into account by the human reviewer when making the final decision."
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-006-AF6B08",
+            "applicant_name": "Drew Sanders",
+            "requested_amount": 9000,
+            "loan_purpose": "Auto purchase",
+            "employment_status": "Employed full-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-006-AF6B08",
+              "applicant_name": "Drew Sanders",
+              "requested_amount": 9000,
+              "loan_purpose": "Auto purchase",
+              "employment_status": "Employed full-time"
+            },
+            "pay_stub": {
+              "employer_name": "Bright Path Consulting",
+              "gross_monthly_income": 5400.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 4200.0,
+              "monthly_deposits": 5350.0
+            },
+            "credit_report": {
+              "credit_score": 730,
+              "existing_monthly_debt": 600.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "id_document": {
+              "name": "Drew Sanders",
+              "date_of_birth": "1992-04-17",
+              "id_status": "not_verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Bright Path Consulting",
+              "note": "Mock registry lookup confirms an active record for 'Bright Path Consulting'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 4200.0,
+              "monthly_deposits": 5350.0,
+              "cashflow_stability": "moderate"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 730,
+              "existing_monthly_debt": 600.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "income_discrepancy": null,
+            "identity_flag": "ID document could not be verified",
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.111,
+              "band": "low",
+              "existing_monthly_debt": 600.0,
+              "gross_monthly_income": 5400.0
+            },
+            "credit_risk": {
+              "score": 730,
+              "band": "moderate",
+              "payment_history": "No late payments in 24 months",
+              "recent_late_payments": false
+            },
+            "income_stability": {
+              "band": "low",
+              "employment_status": "Employed full-time",
+              "employment_verified": true,
+              "income_discrepancy": null
+            },
+            "cashflow_risk": {
+              "band": "moderate",
+              "cashflow_stability": "moderate",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 4200.0,
+              "monthly_deposits": 5350.0
+            },
+            "loan_exposure": {
+              "requested_amount": 9000,
+              "annual_income": 64800.0,
+              "loan_to_income_ratio": 0.139,
+              "band": "low"
+            },
+            "overall_risk_level": "moderate"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    },
+    {
+      "case_id": "APP-007",
+      "run": 1,
+      "result": {
+        "case_id": "APP-007",
+        "scenario": "Borderline, needs manual review",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Applicant Sam Whitfield seeks a $20,000 small\u2011business loan; monthly gross income is $5,600, credit score is 648, and the overall risk assessment is high.",
+          "key_findings": [
+            "Requested loan amount: $20,000 for a small\u2011business purpose",
+            "Gross monthly income reported on pay stub: $5,600",
+            "Average monthly bank balance: $2,600 with monthly deposits of $5,550",
+            "Existing monthly debt: $1,900 resulting in a debt\u2011to\u2011income ratio of 34%",
+            "Credit score: 648 with one payment 30+ days late in the past 12 months",
+            "Employment verified as full\u2011time with Harborline Freight",
+            "Cashflow stability assessed as low, leading to a high cashflow risk rating",
+            "Overall risk level classified as high"
+          ],
+          "inconsistencies": [],
+          "risk_explanation": "The applicant\u2019s income appears steady and is verified, but the credit score is below the typical threshold for low\u2011risk borrowers and there is a recent late payment, which raises credit risk. Debt levels consume about a third of the monthly income, placing the debt\u2011to\u2011income ratio in a moderate band. Bank cashflow analysis shows low stability, indicating that the applicant\u2019s available cash reserves fluctuate and may not comfortably cover loan payments. Combined, these factors lead to an overall high risk rating despite stable employment.",
+          "narrative_report": "Sam Whitfield has applied for a $20,000 loan to support a small business. The application lists full\u2011time employment with Harborline Freight, and the pay stub confirms a gross monthly income of $5,600. Bank data shows an average monthly balance of $2,600 and regular deposits of $5,550, suggesting that most of the income is being deposited.\n\nThe credit report assigns a score of 648 and notes one payment that was more than 30 days late within the last year. Existing monthly debt obligations total $1,900, which translates to a debt\u2011to\u2011income ratio of roughly 34%, falling into a moderate risk band. While employment is verified, the cashflow analysis rates stability as low, indicating that the applicant\u2019s cash reserves may be insufficient to absorb unexpected expenses.\n\nRisk assessment components show a high credit risk due to the score and recent late payment, a high cashflow risk because of low stability, and a moderate loan\u2011to\u2011income exposure (loan amount is about 30% of annual income). The overall risk level is therefore classified as high. These points provide a balanced view of the applicant\u2019s strengths\u2014steady verified employment and consistent deposits\u2014and concerns\u2014credit blemish, moderate debt load, and limited cashflow stability."
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-007-8161C9",
+            "applicant_name": "Sam Whitfield",
+            "requested_amount": 20000,
+            "loan_purpose": "Small business",
+            "employment_status": "Employed full-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-007-8161C9",
+              "applicant_name": "Sam Whitfield",
+              "requested_amount": 20000,
+              "loan_purpose": "Small business",
+              "employment_status": "Employed full-time"
+            },
+            "pay_stub": {
+              "employer_name": "Harborline Freight",
+              "gross_monthly_income": 5600.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 2600.0,
+              "monthly_deposits": 5550.0
+            },
+            "credit_report": {
+              "credit_score": 648,
+              "existing_monthly_debt": 1900.0,
+              "payment_history": "1 payment 30+ days late in last 12 months"
+            },
+            "id_document": {
+              "name": "Sam Whitfield",
+              "date_of_birth": "1983-12-05",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Harborline Freight",
+              "note": "Mock registry lookup confirms an active record for 'Harborline Freight'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 2600.0,
+              "monthly_deposits": 5550.0,
+              "cashflow_stability": "low"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 648,
+              "existing_monthly_debt": 1900.0,
+              "payment_history": "1 payment 30+ days late in last 12 months"
+            },
+            "income_discrepancy": null,
+            "identity_flag": null,
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.339,
+              "band": "moderate",
+              "existing_monthly_debt": 1900.0,
+              "gross_monthly_income": 5600.0
+            },
+            "credit_risk": {
+              "score": 648,
+              "band": "high",
+              "payment_history": "1 payment 30+ days late in last 12 months",
+              "recent_late_payments": true
+            },
+            "income_stability": {
+              "band": "low",
+              "employment_status": "Employed full-time",
+              "employment_verified": true,
+              "income_discrepancy": null
+            },
+            "cashflow_risk": {
+              "band": "high",
+              "cashflow_stability": "low",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 2600.0,
+              "monthly_deposits": 5550.0
+            },
+            "loan_exposure": {
+              "requested_amount": 20000,
+              "annual_income": 67200.0,
+              "loan_to_income_ratio": 0.298,
+              "band": "moderate"
+            },
+            "overall_risk_level": "high"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    },
+    {
+      "case_id": "APP-008",
+      "run": 1,
+      "result": {
+        "case_id": "APP-008",
+        "scenario": "Self-employed, volatile cash flow",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Taylor Brooks applied for a $14,000 loan for business equipment. The applicant is self\u2011employed with a verified business, a credit score of 705, and a low debt\u2011to\u2011income ratio. However, there is a notable gap between reported income and bank\u2011derived cash flow, and cash flow stability is assessed as low.",
+          "key_findings": [
+            "Self\u2011employment verified; gross monthly income reported as $6,200.",
+            "Credit score 705, no late payments in the past 24 months.",
+            "Debt\u2011to\u2011income ratio 19.4%, classified as low.",
+            "Bank deposits average $3,900 per month, with an average balance of $1,450.",
+            "Overall risk level flagged as high due to cash flow concerns."
+          ],
+          "inconsistencies": [
+            "Stated gross monthly income ($6,200) exceeds observed monthly deposits ($3,900) by 37.1%.",
+            "Income stability band is marked high while cashflow stability is marked low."
+          ],
+          "risk_explanation": "The applicant shows solid credit behavior and a low debt\u2011to\u2011income ratio, which are positive signals. The primary risk comes from the mismatch between the declared income and the actual cash inflows, indicating that the true earnings may be lower than stated. Low cashflow stability and a modest average bank balance further increase uncertainty about the applicant's ability to service the loan, leading to an overall high risk rating.",
+          "narrative_report": "Taylor Brooks has submitted a request for a $14,000 loan to purchase business equipment. The applicant is self\u2011employed through Brooks Creative Studio, and the business registration has been verified. Reported gross monthly income is $6,200, and the credit report shows a score of 705 with a clean payment history over the past two years. Debt\u2011to\u2011income calculations place the ratio at 19.4%, which falls into a low\u2011risk band.\n\nBank statement analysis reveals an average monthly balance of $1,450 and regular deposits averaging $3,900 per month. The cashflow analysis tool rates cashflow stability as low, and the overall cashflow risk is flagged as high. A discrepancy was identified: the observed deposits are 37.1% lower than the stated gross income, suggesting that the applicant's actual earnings may be lower than reported. Additionally, while the income stability assessment is marked high, the cashflow stability assessment is low, presenting an internal inconsistency.\n\nCredit risk is moderate, with no recent late payments, and the loan\u2011to\u2011income ratio is 18.8%, also considered low. Despite these strengths, the significant income shortfall and low cashflow stability drive the overall risk assessment to a high level. The reviewer should weigh the solid credit profile against the uncertainty in cash flow and the income discrepancy when making a final decision."
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-008-6B55D2",
+            "applicant_name": "Taylor Brooks",
+            "requested_amount": 14000,
+            "loan_purpose": "Business equipment",
+            "employment_status": "Self-employed"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-008-6B55D2",
+              "applicant_name": "Taylor Brooks",
+              "requested_amount": 14000,
+              "loan_purpose": "Business equipment",
+              "employment_status": "Self-employed"
+            },
+            "pay_stub": {
+              "employer_name": "Brooks Creative Studio (self-employed)",
+              "gross_monthly_income": 6200.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 1450.0,
+              "monthly_deposits": 3900.0
+            },
+            "credit_report": {
+              "credit_score": 705,
+              "existing_monthly_debt": 1200.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "id_document": {
+              "name": "Taylor Brooks",
+              "date_of_birth": "1991-07-23",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Brooks Creative Studio (self-employed)",
+              "note": "Mock registry lookup confirms an active record for 'Brooks Creative Studio (self-employed)'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 1450.0,
+              "monthly_deposits": 3900.0,
+              "cashflow_stability": "low"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 705,
+              "existing_monthly_debt": 1200.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "income_discrepancy": {
+              "stated_gross_monthly_income": 6200.0,
+              "observed_monthly_deposits": 3900.0,
+              "shortfall_pct": 37.1
+            },
+            "identity_flag": null,
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.194,
+              "band": "low",
+              "existing_monthly_debt": 1200.0,
+              "gross_monthly_income": 6200.0
+            },
+            "credit_risk": {
+              "score": 705,
+              "band": "moderate",
+              "payment_history": "No late payments in 24 months",
+              "recent_late_payments": false
+            },
+            "income_stability": {
+              "band": "high",
+              "employment_status": "Self-employed",
+              "employment_verified": true,
+              "income_discrepancy": {
+                "stated_gross_monthly_income": 6200.0,
+                "observed_monthly_deposits": 3900.0,
+                "shortfall_pct": 37.1
+              }
+            },
+            "cashflow_risk": {
+              "band": "high",
+              "cashflow_stability": "low",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 1450.0,
+              "monthly_deposits": 3900.0
+            },
+            "loan_exposure": {
+              "requested_amount": 14000,
+              "annual_income": 74400.0,
+              "loan_to_income_ratio": 0.188,
+              "band": "low"
+            },
+            "overall_risk_level": "high"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    },
+    {
+      "case_id": "APP-009",
+      "run": 1,
+      "result": {
+        "case_id": "APP-009",
+        "scenario": "Large loan relative to income (exposure risk)",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Applicant Jamie Ortiz seeks a $60,000 debt\u2011consolidation loan with a full\u2011time verified job and a credit score of 712, but the loan amount equals the applicant\u2019s annual income, leading to a high overall risk rating.",
+          "key_findings": [
+            "Requested loan amount of $60,000 equals annual gross income of $60,000 (loan\u2011to\u2011income ratio 1.0, high exposure)",
+            "Credit score is 712 with no late payments in the past 24 months (moderate credit risk)",
+            "Debt\u2011to\u2011income ratio is 19%, classified as low",
+            "Monthly gross income $5,000 is verified; employment full\u2011time at Fieldstone Insurance Group",
+            "Bank cashflow shows average monthly balance $3,000 and deposits $4,950, rated moderate stability"
+          ],
+          "inconsistencies": [],
+          "risk_explanation": "The primary concern is the size of the loan relative to the applicant\u2019s income; borrowing an amount equal to one year\u2019s earnings creates a high loan\u2011to\u2011income ratio, which drives the overall risk to a high level. While the credit score is solid, debt\u2011to\u2011income is low, and employment is verified, the moderate cashflow stability and lack of a larger income buffer add uncertainty to the applicant\u2019s ability to service the loan over time.",
+          "narrative_report": "Jamie Ortiz has applied for a $60,000 debt\u2011consolidation loan. The applicant is employed full\u2011time at Fieldstone Insurance Group, with a verified gross monthly income of $5,000, translating to an annual income of $60,000. The requested loan amount matches this annual income, resulting in a loan\u2011to\u2011income ratio of 1.0, which the risk model flags as high exposure.\n\nCredit data shows a score of 712 and a clean payment history with no late payments in the past two years, placing the credit risk in a moderate band. Existing monthly debt obligations are $950, giving a debt\u2011to\u2011income ratio of 19%, which is considered low risk.\n\nBank statement analysis indicates an average monthly balance of $3,000 and regular deposits of $4,950, leading to a moderate assessment of cashflow stability. No discrepancies were found between the extracted documents and the enrichment results; all information aligns consistently.\n\nOverall, the applicant presents strong credit and low existing debt relative to income, but the loan amount\u2019s size relative to annual earnings creates a high overall risk rating. The reviewer should weigh the solid credit profile against the high loan\u2011to\u2011income exposure and moderate cashflow stability when making a decision."
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-009-128B47",
+            "applicant_name": "Jamie Ortiz",
+            "requested_amount": 60000,
+            "loan_purpose": "Debt consolidation",
+            "employment_status": "Employed full-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-009-128B47",
+              "applicant_name": "Jamie Ortiz",
+              "requested_amount": 60000,
+              "loan_purpose": "Debt consolidation",
+              "employment_status": "Employed full-time"
+            },
+            "pay_stub": {
+              "employer_name": "Fieldstone Insurance Group",
+              "gross_monthly_income": 5000.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 3000.0,
+              "monthly_deposits": 4950.0
+            },
+            "credit_report": {
+              "credit_score": 712,
+              "existing_monthly_debt": 950.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "id_document": {
+              "name": "Jamie Ortiz",
+              "date_of_birth": "1987-02-28",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Fieldstone Insurance Group",
+              "note": "Mock registry lookup confirms an active record for 'Fieldstone Insurance Group'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 3000.0,
+              "monthly_deposits": 4950.0,
+              "cashflow_stability": "moderate"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 712,
+              "existing_monthly_debt": 950.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "income_discrepancy": null,
+            "identity_flag": null,
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.19,
+              "band": "low",
+              "existing_monthly_debt": 950.0,
+              "gross_monthly_income": 5000.0
+            },
+            "credit_risk": {
+              "score": 712,
+              "band": "moderate",
+              "payment_history": "No late payments in 24 months",
+              "recent_late_payments": false
+            },
+            "income_stability": {
+              "band": "low",
+              "employment_status": "Employed full-time",
+              "employment_verified": true,
+              "income_discrepancy": null
+            },
+            "cashflow_risk": {
+              "band": "moderate",
+              "cashflow_stability": "moderate",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 3000.0,
+              "monthly_deposits": 4950.0
+            },
+            "loan_exposure": {
+              "requested_amount": 60000,
+              "annual_income": 60000.0,
+              "loan_to_income_ratio": 1.0,
+              "band": "high"
+            },
+            "overall_risk_level": "high"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    },
+    {
+      "case_id": "APP-010",
+      "run": 1,
+      "result": {
+        "case_id": "APP-010",
+        "scenario": "Thin credit file, young applicant",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Peyton Reyes is a part\u2011time employee applying for a $6,000 education loan with verified identity and employment, low debt\u2011to\u2011income but no credit score and low cashflow stability.",
+          "key_findings": [
+            "Verified part\u2011time employment at Campus Grounds Cafe with $2,100 gross monthly income",
+            "Debt\u2011to\u2011income ratio is low at 7.1%",
+            "Credit file is thin \u2013 no credit score available, resulting in high credit risk",
+            "Bank cashflow analysis shows low stability and high cashflow risk",
+            "Overall risk assessment is marked high"
+          ],
+          "inconsistencies": [],
+          "risk_explanation": "The applicant\u2019s income appears sufficient relative to the requested loan, keeping the debt\u2011to\u2011income ratio low. However, the lack of a credit score means there is no established track record of borrowing behavior, which raises credit risk. Additionally, the bank\u2011derived cashflow shows low stability, suggesting that the applicant\u2019s available cash may fluctuate and could make repayment less certain. These factors combine to produce an overall high risk rating despite the modest loan size and low debt load.",
+          "narrative_report": "Applicant Overview:\nPeyton Reyes, born 2003-05-11, has applied for a $6,000 education loan. The application lists part\u2011time employment and a loan purpose of education.\n\nVerification Summary:\n- Identity: Verified via ID document.\n- Employment: Confirmed through a mock registry lookup; employer is Campus Grounds Cafe. Gross monthly income reported on the pay stub is $2,100.\n- Income Consistency: Bank statement shows average monthly deposits of $2,050, which is close to the pay\u2011stub figure and was not flagged as a discrepancy.\n\nFinancial Profile:\n- Debt\u2011to\u2011Income: The existing monthly debt is $150, yielding a DTI of 7.1%, which falls in the low\u2011risk band.\n- Credit History: No credit score is on file, classified as a thin file. Payment history is insufficient to establish a pattern, leading to a high credit\u2011risk rating.\n- Cashflow: Analysis of the bank statement indicates low cashflow stability, assigning a high cashflow risk.\n- Loan Exposure: The requested amount represents 23.8% of the applicant\u2019s annual income ($25,200), a moderate exposure level.\n\nRisk Assessment:\nWhile the applicant\u2019s income relative to the loan amount is comfortable and the debt burden is minimal, the absence of a credit score and the low stability of cash reserves raise concerns about the ability to meet repayment obligations consistently. These weaknesses drive the overall risk rating to high, even though other metrics such as DTI and loan\u2011to\u2011income are favorable.\n\nThe reviewer should consider both the strengths (verified income, low DTI) and the concerns (no credit score, unstable cashflow) when making a final decision."
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-010-444BDF",
+            "applicant_name": "Peyton Reyes",
+            "requested_amount": 6000,
+            "loan_purpose": "Education",
+            "employment_status": "Employed part-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-010-444BDF",
+              "applicant_name": "Peyton Reyes",
+              "requested_amount": 6000,
+              "loan_purpose": "Education",
+              "employment_status": "Employed part-time"
+            },
+            "pay_stub": {
+              "employer_name": "Campus Grounds Cafe",
+              "gross_monthly_income": 2100.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 800.0,
+              "monthly_deposits": 2050.0
+            },
+            "credit_report": {
+              "credit_score": null,
+              "existing_monthly_debt": 150.0,
+              "payment_history": "Insufficient history to establish a pattern"
+            },
+            "id_document": {
+              "name": "Peyton Reyes",
+              "date_of_birth": "2003-05-11",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Campus Grounds Cafe",
+              "note": "Mock registry lookup confirms an active record for 'Campus Grounds Cafe'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 800.0,
+              "monthly_deposits": 2050.0,
+              "cashflow_stability": "low"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "no_score_on_file",
+              "reason": "No credit score found on file (thin file)",
+              "existing_monthly_debt": 150.0,
+              "payment_history": "Insufficient history to establish a pattern"
+            },
+            "income_discrepancy": null,
+            "identity_flag": null,
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.071,
+              "band": "low",
+              "existing_monthly_debt": 150.0,
+              "gross_monthly_income": 2100.0
+            },
+            "credit_risk": {
+              "score": null,
+              "band": "high",
+              "note": "No credit score on file (thin file / unscored)"
+            },
+            "income_stability": {
+              "band": "moderate",
+              "employment_status": "Employed part-time",
+              "employment_verified": true,
+              "income_discrepancy": null
+            },
+            "cashflow_risk": {
+              "band": "high",
+              "cashflow_stability": "low",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 800.0,
+              "monthly_deposits": 2050.0
+            },
+            "loan_exposure": {
+              "requested_amount": 6000,
+              "annual_income": 25200.0,
+              "loan_to_income_ratio": 0.238,
+              "band": "moderate"
+            },
+            "overall_risk_level": "high"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    },
+    {
+      "case_id": "APP-011",
+      "run": 1,
+      "result": {
+        "case_id": "APP-011",
+        "scenario": "Unemployed applicant, no pay stub (missing income documentation)",
+        "status": "NEEDS_DOCUMENTATION",
+        "review_report": {},
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-011-49EA65",
+            "applicant_name": "Reese Donovan",
+            "requested_amount": 8000,
+            "loan_purpose": "Personal expenses",
+            "employment_status": "Unemployed"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-011-49EA65",
+              "applicant_name": "Reese Donovan",
+              "requested_amount": 8000,
+              "loan_purpose": "Personal expenses",
+              "employment_status": "Unemployed"
+            },
+            "bank_statement": {
+              "average_monthly_balance": 4200.0,
+              "monthly_deposits": 1200.0
+            },
+            "credit_report": {
+              "credit_score": 655,
+              "existing_monthly_debt": 300.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "id_document": {
+              "name": "Reese Donovan",
+              "date_of_birth": "1994-08-15",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "unable_to_verify",
+              "reason": "No pay stub / employer name available to verify"
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 4200.0,
+              "monthly_deposits": 1200.0,
+              "cashflow_stability": "strong"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 655,
+              "existing_monthly_debt": 300.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "income_discrepancy": null,
+            "identity_flag": null,
+            "additional_documentation_required": true
+          },
+          "missing_information": [
+            "pay_stub"
+          ],
+          "risk_assessment": {}
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": null
+      }
+    },
+    {
+      "case_id": "APP-012",
+      "run": 1,
+      "result": {
+        "case_id": "APP-012",
+        "scenario": "Applicant age inconsistency (ID indicates a minor, born 2010)",
+        "status": "AWAITING_HUMAN_DECISION",
+        "review_report": {
+          "summary": "Jordan Ashworth, a 16\u2011year\u2011old applicant, seeks a $5,000 auto loan while reporting part\u2011time employment with $1,800 monthly gross income and a credit score of 690.",
+          "key_findings": [
+            "Requested loan amount $5,000 for auto purchase",
+            "Part\u2011time employment at Sunrise Cafe with $1,800 gross monthly income",
+            "Credit score 690 with no late payments in 24 months",
+            "Debt\u2011to\u2011income ratio 2.8%, classified as low",
+            "Average monthly bank balance $1,200 and deposits $1,750, cashflow stability moderate"
+          ],
+          "inconsistencies": [
+            "Date of birth (2010\u201104\u201122) indicates applicant is 16 years old, which conflicts with reported employment and loan eligibility",
+            "Identity verification status is \"verified\" despite the applicant being under the typical legal age for borrowing"
+          ],
+          "risk_explanation": "The quantitative risk metrics place the application in a moderate risk band: low debt\u2011to\u2011income, a fair credit score, and stable but modest cashflow. However, the applicant\u2019s age raises a significant legal and underwriting concern, as a 16\u2011year\u2011old is generally ineligible to enter a binding loan contract, and the reported employment may not be verifiable for a minor. This non\u2011financial factor outweighs the otherwise moderate financial profile.",
+          "narrative_report": "Jordan Ashworth has applied for a $5,000 loan to purchase a vehicle. The applicant reports part\u2011time employment at Sunrise Cafe, earning $1,800 gross per month, which has been verified through an external employment check. Bank analysis shows an average monthly balance of $1,200 and regular deposits of $1,750, indicating moderate cashflow stability. Credit data shows a score of 690, no late payments in the past two years, and a very low debt\u2011to\u2011income ratio of 2.8%.\n\nDespite these financial indicators suggesting a manageable risk, a critical discrepancy exists in the identity information: the date of birth listed (April 22, 2010) makes the applicant 16 years old at the time of this review. This age conflicts with the reported employment and raises eligibility concerns, as minors typically cannot legally enter loan agreements. The identity document is marked as verified, but the age issue was not flagged in the enrichment stage.\n\nOverall, the financial metrics fall into a moderate risk category, but the applicant\u2019s under\u2011age status introduces a substantial non\u2011financial risk that must be addressed before any lending decision can be made. The reviewer should consider the legal implications and verify whether any exceptions or additional documentation could resolve this inconsistency."
+        },
+        "review_input": {
+          "application": {
+            "application_id": "EVAL-APP-012-B71259",
+            "applicant_name": "Jordan Ashworth",
+            "requested_amount": 5000,
+            "loan_purpose": "Auto purchase",
+            "employment_status": "Employed part-time"
+          },
+          "extracted_information": {
+            "application": {
+              "application_id": "EVAL-APP-012-B71259",
+              "applicant_name": "Jordan Ashworth",
+              "requested_amount": 5000,
+              "loan_purpose": "Auto purchase",
+              "employment_status": "Employed part-time"
+            },
+            "pay_stub": {
+              "employer_name": "Sunrise Cafe",
+              "gross_monthly_income": 1800.0
+            },
+            "bank_statement": {
+              "average_monthly_balance": 1200.0,
+              "monthly_deposits": 1750.0
+            },
+            "credit_report": {
+              "credit_score": 690,
+              "existing_monthly_debt": 50.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "id_document": {
+              "name": "Jordan Ashworth",
+              "date_of_birth": "2010-04-22",
+              "id_status": "verified"
+            }
+          },
+          "enrichment_results": {
+            "employment": {
+              "tool": "verify_employment",
+              "status": "verified",
+              "employer_name": "Sunrise Cafe",
+              "note": "Mock registry lookup confirms an active record for 'Sunrise Cafe'."
+            },
+            "cashflow": {
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 1200.0,
+              "monthly_deposits": 1750.0,
+              "cashflow_stability": "moderate"
+            },
+            "credit": {
+              "tool": "get_credit_details",
+              "status": "retrieved",
+              "credit_score": 690,
+              "existing_monthly_debt": 50.0,
+              "payment_history": "No late payments in 24 months"
+            },
+            "income_discrepancy": null,
+            "identity_flag": null,
+            "additional_documentation_required": false
+          },
+          "missing_information": [],
+          "risk_assessment": {
+            "debt_to_income": {
+              "ratio": 0.028,
+              "band": "low",
+              "existing_monthly_debt": 50.0,
+              "gross_monthly_income": 1800.0
+            },
+            "credit_risk": {
+              "score": 690,
+              "band": "moderate",
+              "payment_history": "No late payments in 24 months",
+              "recent_late_payments": false
+            },
+            "income_stability": {
+              "band": "moderate",
+              "employment_status": "Employed part-time",
+              "employment_verified": true,
+              "income_discrepancy": null
+            },
+            "cashflow_risk": {
+              "band": "moderate",
+              "cashflow_stability": "moderate",
+              "tool": "analyze_bank_cashflow",
+              "status": "analyzed",
+              "average_monthly_balance": 1200.0,
+              "monthly_deposits": 1750.0
+            },
+            "loan_exposure": {
+              "requested_amount": 5000,
+              "annual_income": 21600.0,
+              "loan_to_income_ratio": 0.231,
+              "band": "moderate"
+            },
+            "overall_risk_level": "moderate"
+          }
+        },
+        "used_fallback": false
+      },
+      "grades": {
+        "status": {
+          "passed": true,
+          "detail": ""
+        },
+        "schema": {
+          "passed": true,
+          "detail": ""
+        }
+      }
+    }
+  ]
+}

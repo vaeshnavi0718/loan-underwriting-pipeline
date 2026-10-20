@@ -14,7 +14,7 @@ REQUIRED = {
 }
 
 
-def grade(result: dict) -> dict | None:
+def grade(result: dict, case: dict) -> dict | None:
     if result["status"] != "AWAITING_HUMAN_DECISION":
         return None
 

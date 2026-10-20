@@ -94,6 +94,7 @@ tests/
 evals/
   run.py                  eval runner: python -m evals.run --suite <name>
   harness.py              runs one synthetic application through the pipeline
+  cases/                  expected behavior for each synthetic application
   graders/                one file per grader
   results/                saved results from each run
 render.yaml               deployment config for Render
@@ -125,14 +126,17 @@ This covers a strong applicant, a missing document that pauses the pipeline and 
 Tests check the deterministic parts. Evals check the part an LLM touches: the Review Agent's report, which reads differently every run. The runner sends every synthetic application through the real pipeline, grades the output, and saves the full results to `evals/results/`.
 
 ```
-python -m evals.run --suite schema               # one run per application
-python -m evals.run --suite schema --repeats 3   # LLM output varies, so repeat
-python -m evals.run --suite schema --cases APP-005 APP-012
+python -m evals.run --suite review               # one run per application
+python -m evals.run --suite review --repeats 3   # LLM output varies, so repeat
+python -m evals.run --suite review --cases APP-005 APP-012
 ```
+
+What each application should produce is written down in [`evals/cases/review_cases.yaml`](evals/cases/review_cases.yaml): where the pipeline should stop, the facts its report must mention, and the things it must not claim (false alarms, and misreadings seen in real runs).
 
 | Suite | Grader | What it checks | Runs in CI |
 |---|---|---|---|
-| `schema` | code | The report has all five fields with the right types | yes |
+| `review` | `status` (code) | The pipeline stops where expected: at the human checkpoint, or paused for exactly the missing documents | yes |
+| `review` | `schema` (code) | The report has all five fields with the right types | yes |
 
 CI runs without an API key, so the Review Agent uses its fallback report there and the run costs nothing. Suites that grade the LLM's actual reasoning run locally with `GROQ_API_KEY` set. Latest results are summarized in [`evals/RESULTS.md`](evals/RESULTS.md), and the plan for the rest of the suite is in [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
