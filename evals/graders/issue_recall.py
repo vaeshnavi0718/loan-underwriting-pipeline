@@ -1,0 +1,41 @@
+"""
+Issue recall grader (LLM judge).
+
+Did the report surface every fact the case file lists under must_mention?
+Each fact is its own yes/no question to the judge, and a "yes" only counts
+if the judge's quote is really in the report.
+
+Skipped (None) when no judge is available, e.g. in CI.
+"""
+from evals import judge
+from evals.graders.common import report_text
+
+QUESTION = (
+    "Does the report state the following? Wording, rounding and number formatting may differ, "
+    "but the substance must be there: {fact}"
+)
+
+
+def grade(result: dict, case: dict) -> dict | None:
+    report = result["review_report"]
+    if not report or not case["must_mention"] or not judge.available():
+        return None
+
+    text = report_text(report)
+    missed, evidence = [], {}
+    for fact in case["must_mention"]:
+        verdict = judge.ask(QUESTION.format(fact=fact), text)
+        if verdict["verdict"] == "yes":
+            evidence[fact] = verdict["evidence"]
+        else:
+            note = "" if verdict["verdict"] == "no" else f" [{verdict['verdict']}]"
+            missed.append(fact + note)
+
+    found = len(case["must_mention"]) - len(missed)
+    return {
+        "passed": not missed,
+        "detail": f"missed: {missed}" if missed else "",
+        "facts_found": found,
+        "facts_total": len(case["must_mention"]),
+        "evidence": evidence,
+    }

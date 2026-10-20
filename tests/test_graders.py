@@ -93,3 +93,46 @@ def test_no_decision_grade_reports_the_phrase():
     g = no_decision.grade(_result(narrative_report="Overall the applicant would likely qualify."), {})
     assert not g["passed"]
     assert "would likely qualify" in g["detail"]
+
+
+from evals import judge
+from evals.graders import issue_recall
+
+CASE = {"must_mention": ["Low credit score of 571", "Two late payments"]}
+
+
+def _with_fake_judge(monkeypatch, answers: dict):
+    """answers: fact substring -> (answer, evidence)"""
+    monkeypatch.setattr(judge, "available", lambda: True)
+
+    def fake_ask(question, report, **kwargs):
+        for fact, (answer, evidence) in answers.items():
+            if fact in question:
+                return {"verdict": answer, "evidence": evidence}
+        raise AssertionError(question)
+
+    monkeypatch.setattr(judge, "ask", fake_ask)
+
+
+def test_issue_recall_passes_when_every_fact_found(monkeypatch):
+    _with_fake_judge(monkeypatch, {"571": ("yes", "score of 571"), "late": ("yes", "two late payments")})
+    g = issue_recall.grade(_result(summary="x"), CASE)
+    assert g["passed"] and g["facts_found"] == 2
+
+
+def test_issue_recall_fails_and_names_missed_fact(monkeypatch):
+    _with_fake_judge(monkeypatch, {"571": ("yes", "score of 571"), "late": ("no", "")})
+    g = issue_recall.grade(_result(summary="x"), CASE)
+    assert not g["passed"] and g["facts_found"] == 1
+    assert "Two late payments" in g["detail"]
+
+
+def test_issue_recall_counts_unsupported_as_missed(monkeypatch):
+    _with_fake_judge(monkeypatch, {"571": ("unsupported", "made up"), "late": ("yes", "late")})
+    g = issue_recall.grade(_result(summary="x"), CASE)
+    assert not g["passed"] and "[unsupported]" in g["detail"]
+
+
+def test_issue_recall_skipped_without_judge(monkeypatch):
+    monkeypatch.setattr(judge, "available", lambda: False)
+    assert issue_recall.grade(_result(summary="x"), CASE) is None

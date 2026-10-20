@@ -16,13 +16,15 @@ import sys
 from datetime import datetime, timezone
 
 from evals.cases import load_cases
-from evals.graders import grounding, no_decision, schema, status
+from evals.graders import grounding, issue_recall, no_decision, schema, status
 from evals.harness import run_case
 
 # suite name -> {grader name: grade(result, case) function}
 SUITES = {
     "review": {"status": status.grade, "schema": schema.grade, "grounding": grounding.grade,
                "no_decision": no_decision.grade},
+    # LLM-judged: needs GROQ_API_KEY, so not run in CI
+    "judged": {"issue_recall": issue_recall.grade},
 }
 
 RESULTS_DIR = os.path.join(os.path.dirname(__file__), "results")
