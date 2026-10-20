@@ -15,7 +15,8 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 - [x] Case file with what each application's report must and must not flag
 - [x] Status grader (code): the pipeline stops where the case file expects
 - [x] Grounding grader (code): every dollar amount in the report exists in the input
-- [ ] No-decision grader (code + LLM judge): the report never recommends approve or deny
+- [x] No-decision grader, keyword part (code): explicit and common soft recommendations
+- [ ] No-decision grader, judge part (LLM judge): subtler implied recommendations
 - [ ] Issue recall grader (LLM judge, must quote evidence)
 - [ ] False alarms on the clean application (APP-001)
 - [ ] Hand-label 20 reports and record how often the judge agrees

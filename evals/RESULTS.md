@@ -4,13 +4,14 @@ Latest run of each suite. Raw per-application output for every run is in `result
 
 ## review
 
-Run 2026-10-20 · model `openai/gpt-oss-120b` · 12 applications × 3 runs · [raw results](results/2026-10-20T185013Z_review.json)
+Run 2026-10-20 · model `openai/gpt-oss-120b` · 12 applications × 3 runs · [raw results](results/2026-10-20T191137Z_review.json)
 
 | Grader | Passed | Notes |
 |---|---|---|
 | Pipeline stops where expected | 36/36 | APP-004 and APP-011 correctly pause for their missing documents |
 | Report has all five fields with the right types | 30/30 | The two paused applications never reach the Review Agent, so they are not graded |
-| Every dollar amount exists in the input | 30/30 | 303 amounts checked, 7 to 15 per report, none invented |
+| Every dollar amount exists in the input | 30/30 | 312 amounts checked, 7 to 13 per report, none invented |
+| No approve/deny recommendation (keyword patterns) | 30/30 | 0 hits across all 70 real reports so far. Neutral phrasing like "final decision" and "eligibility" is correctly not flagged |
 
 No fallback reports were used: every report came from the model.
 
