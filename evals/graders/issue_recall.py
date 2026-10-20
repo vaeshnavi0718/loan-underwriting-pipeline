@@ -5,7 +5,8 @@ Did the report surface every fact the case file lists under must_mention?
 Each fact is its own yes/no question to the judge, and a "yes" only counts
 if the judge's quote is really in the report.
 
-Skipped (None) when no judge is available, e.g. in CI.
+A judge error is reported as an error, never as a missed fact. Skipped
+(None) when no judge is available, e.g. in CI.
 """
 from evals import judge
 from evals.graders.common import report_text
@@ -25,10 +26,12 @@ def grade(result: dict, case: dict) -> dict | None:
     missed, evidence = [], {}
     for fact in case["must_mention"]:
         verdict = judge.ask(QUESTION.format(fact=fact), text)
+        if verdict["verdict"] == "error":
+            return {"passed": False, "error": True, "detail": f"judge error on '{fact}': {verdict['detail']}"}
         if verdict["verdict"] == "yes":
             evidence[fact] = verdict["evidence"]
         else:
-            note = "" if verdict["verdict"] == "no" else f" [{verdict['verdict']}]"
+            note = " [unsupported]" if verdict["verdict"] == "unsupported" else ""
             missed.append(fact + note)
 
     found = len(case["must_mention"]) - len(missed)

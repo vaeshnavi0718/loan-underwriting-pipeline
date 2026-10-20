@@ -108,7 +108,7 @@ def _with_fake_judge(monkeypatch, answers: dict):
     def fake_ask(question, report, **kwargs):
         for fact, (answer, evidence) in answers.items():
             if fact in question:
-                return {"verdict": answer, "evidence": evidence}
+                return {"verdict": answer, "evidence": evidence, "detail": "fake error"}
         raise AssertionError(question)
 
     monkeypatch.setattr(judge, "ask", fake_ask)
@@ -136,3 +136,43 @@ def test_issue_recall_counts_unsupported_as_missed(monkeypatch):
 def test_issue_recall_skipped_without_judge(monkeypatch):
     monkeypatch.setattr(judge, "available", lambda: False)
     assert issue_recall.grade(_result(summary="x"), CASE) is None
+
+
+from evals.graders import false_alarm
+
+NOT_CLAIM = {"must_not_claim": ["An income or deposit mismatch", "The applicant is a minor"]}
+
+
+def test_false_alarm_passes_when_nothing_claimed(monkeypatch):
+    _with_fake_judge(monkeypatch, {"income": ("no", ""), "minor": ("no", "")})
+    assert false_alarm.grade(_result(summary="x"), NOT_CLAIM)["passed"]
+
+
+def test_false_alarm_fails_with_quote(monkeypatch):
+    _with_fake_judge(monkeypatch, {"income": ("yes", "deposits do not match income"), "minor": ("no", "")})
+    g = false_alarm.grade(_result(summary="x"), NOT_CLAIM)
+    assert not g["passed"]
+    assert "deposits do not match income" in g["detail"]
+
+
+def test_false_alarm_unverified_yes_passes_with_note(monkeypatch):
+    _with_fake_judge(monkeypatch, {"income": ("unsupported", "invented"), "minor": ("no", "")})
+    g = false_alarm.grade(_result(summary="x"), NOT_CLAIM)
+    assert g["passed"] and "unverified" in g["detail"]
+
+
+def test_false_alarm_skipped_without_judge(monkeypatch):
+    monkeypatch.setattr(judge, "available", lambda: False)
+    assert false_alarm.grade(_result(summary="x"), NOT_CLAIM) is None
+
+
+def test_judge_error_is_an_error_not_a_miss(monkeypatch):
+    _with_fake_judge(monkeypatch, {"571": ("error", ""), "late": ("yes", "late")})
+    g = issue_recall.grade(_result(summary="x"), CASE)
+    assert g["error"]
+
+
+def test_judge_error_is_an_error_not_a_pass(monkeypatch):
+    _with_fake_judge(monkeypatch, {"income": ("error", ""), "minor": ("no", "")})
+    g = false_alarm.grade(_result(summary="x"), NOT_CLAIM)
+    assert g["error"]
