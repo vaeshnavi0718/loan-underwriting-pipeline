@@ -129,7 +129,10 @@ Tests check the deterministic parts. Evals check the part an LLM touches: the Re
 python -m evals.run --suite review               # one run per application
 python -m evals.run --suite review --repeats 3   # LLM output varies, so repeat
 python -m evals.run --suite review --cases APP-005 APP-012
+python -m evals.run --suite review --from-results evals/results/<file>.json   # re-grade saved reports, no new LLM calls
 ```
+
+Checks that need to understand meaning (did the report flag the minor's date of birth?) use an LLM judge in `evals/judge.py`. It asks one yes/no question at a time about the whole report, and a "yes" must quote the report: the quote is checked in code, so the judge can't rule on text it made up. The judge runs on a different model family (`qwen/qwen3.8-27b`) from the Review Agent (`gpt-oss-120b`), since models tend to grade their own family's writing too kindly.
 
 What each application should produce is written down in [`evals/cases/review_cases.yaml`](evals/cases/review_cases.yaml): where the pipeline should stop, the facts its report must mention, and the things it must not claim (false alarms, and misreadings seen in real runs).
 

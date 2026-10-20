@@ -17,6 +17,8 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 - [x] Grounding grader (code): every dollar amount in the report exists in the input
 - [x] No-decision grader, keyword part (code): explicit and common soft recommendations
 - [ ] No-decision grader, judge part (LLM judge): subtler implied recommendations
+- [x] Shared LLM judge: one yes/no question per call, whole report, quotes checked in code, different model family from the agent, cached answers
+- [x] Re-grade saved reports without re-running the pipeline (`--from-results`)
 - [ ] Issue recall grader (LLM judge, must quote evidence)
 - [ ] False alarms on the clean application (APP-001)
 - [ ] Hand-label 20 reports and record how often the judge agrees

@@ -8,3 +8,6 @@ data/uploads/*
 logs/*.log
 .pytest_cache/
 .DS_Store
+
+# LLM judge answers, cached locally
+evals/.judge_cache.json
