@@ -33,6 +33,8 @@ def main() -> int:
     parser.add_argument("--suite", choices=sorted(SUITES), required=True)
     parser.add_argument("--repeats", type=int, default=1, help="runs per case (LLM output varies run to run)")
     parser.add_argument("--cases", nargs="*", help="only these case ids, e.g. APP-005 APP-012")
+    parser.add_argument("--from-results", metavar="FILE",
+                        help="re-grade reports saved by an earlier run instead of running the pipeline")
     args = parser.parse_args()
 
     graders = SUITES[args.suite]
@@ -40,19 +42,33 @@ def main() -> int:
     unknown = sorted(set(args.cases or []) - set(all_cases))
     if unknown:
         parser.error(f"no such case(s): {unknown}")
-    cases = args.cases or sorted(all_cases)
-    model = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b") if os.environ.get("GROQ_API_KEY") else "fallback (no GROQ_API_KEY)"
-    print(f"suite={args.suite}  model={model}  {len(cases)} cases x {args.repeats} runs\n")
+
+    if args.from_results:
+        with open(args.from_results) as f:
+            saved = json.load(f)
+        model = saved["model"]
+        runs = [(r["case_id"], r["run"], r["result"]) for r in saved["runs"]
+                if not args.cases or r["case_id"] in args.cases]
+        repeats = saved["repeats"]
+        source = f"re-graded from {os.path.relpath(args.from_results)}"
+    else:
+        model = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b") if os.environ.get("GROQ_API_KEY") else "fallback (no GROQ_API_KEY)"
+        runs = None
+        repeats = args.repeats
+        source = "fresh pipeline runs"
+    cases = sorted({case_id for case_id, _, _ in runs}) if runs is not None else (args.cases or sorted(all_cases))
+    print(f"suite={args.suite}  model={model}  {len(cases)} cases x {repeats} runs  ({source})\n")
+
+    if runs is None:
+        runs = [(case_id, run, run_case(case_id)) for case_id in cases for run in range(1, repeats + 1)]
 
     rows, failures = [], []
-    for case_id in cases:
-        for run in range(1, args.repeats + 1):
-            result = run_case(case_id)
-            grades = {name: grade(result, all_cases[case_id]) for name, grade in graders.items()}
-            rows.append({"case_id": case_id, "run": run, "result": result, "grades": grades})
-            for name, g in grades.items():
-                if g is not None and not g["passed"]:
-                    failures.append(f"{case_id} run {run}  {name}: {g['detail']}")
+    for case_id, run, result in runs:
+        grades = {name: grade(result, all_cases[case_id]) for name, grade in graders.items()}
+        rows.append({"case_id": case_id, "run": run, "result": result, "grades": grades})
+        for name, g in grades.items():
+            if g is not None and not g["passed"]:
+                failures.append(f"{case_id} run {run}  {name}: {g['detail']}")
 
     totals = {}
     print(f"{'case':<9}{'stopped at':<26}" + "".join(f"{n:>14}" for n in graders))
@@ -79,7 +95,7 @@ def main() -> int:
     out_path = os.path.join(RESULTS_DIR, f"{stamp}_{args.suite}.json")
     with open(out_path, "w") as f:
         json.dump(
-            {"suite": args.suite, "model": model, "repeats": args.repeats,
+            {"suite": args.suite, "model": model, "repeats": repeats, "source": source,
              "totals": {k: {"passed": p, "applicable": n} for k, (p, n) in totals.items()},
              "runs": rows},
             f, indent=2, default=str,
