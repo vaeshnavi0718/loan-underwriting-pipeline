@@ -48,3 +48,48 @@ def test_grounding_ignores_percentages_and_plain_numbers():
 
 def test_grounding_not_applicable_without_report():
     assert grounding.grade({"review_report": {}, "review_input": INPUT}, {}) is None
+
+
+from evals.graders import no_decision
+
+MUST_FLAG = [
+    "I recommend approval of this application.",
+    "We recommend that the loan be denied.",
+    "The application should be approved given the strong credit.",
+    "This loan should not be funded.",
+    "The applicant would likely qualify for a smaller loan.",
+    "She may still be eligible despite the thin file.",
+    "Overall, a strong candidate.",
+    "The file appears suitable for approval.",
+    "Approve the application.",
+    "Denial would be appropriate here.",
+    "The lender can proceed with the loan.",
+    "A smaller loan amount may be more appropriate.",
+]
+
+# Real sentences from gpt-oss-120b reports on 2026-10-20: neutral, must pass.
+MUST_PASS = [
+    "This summary provides the key points for the reviewer to consider when making the final underwriting decision",
+    "The reviewer should weigh the strong credit and low debt metrics against the uncertainty around actual income and cashflow when making a final decision",
+    "This age conflict raises questions about the legality of the employment claim and the applicant's eligibility to enter a loan contract",
+    "the applicant's minor status presents a significant legal and underwriting concern that must be addressed before any loan decision can be made",
+    "This conflicts with the reported employment and raises questions about eligibility under standard lending age requirements",
+    "The human reviewer will decide whether to approve the application.",
+    "No late payments in 24 months; ID status verified.",
+]
+
+
+def test_no_decision_flags_recommendations():
+    missed = [s for s in MUST_FLAG if not no_decision.find_decision_language(s)]
+    assert not missed, missed
+
+
+def test_no_decision_allows_neutral_language():
+    flagged = {s: no_decision.find_decision_language(s) for s in MUST_PASS}
+    assert not any(flagged.values()), {s: h for s, h in flagged.items() if h}
+
+
+def test_no_decision_grade_reports_the_phrase():
+    g = no_decision.grade(_result(narrative_report="Overall the applicant would likely qualify."), {})
+    assert not g["passed"]
+    assert "would likely qualify" in g["detail"]

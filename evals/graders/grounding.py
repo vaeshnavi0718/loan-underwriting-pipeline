@@ -10,6 +10,8 @@ legitimate ways for an exact check; the LLM-judged graders cover those.
 """
 import re
 
+from evals.graders.common import report_text
+
 # "$7,200", "$7,200.00", "$ 650", "$60k", "$1.2 million"
 MONEY_RE = re.compile(r"\$\s?(\d[\d,]*(?:\.\d+)?)\s?(k|m|thousand|million)?\b", re.IGNORECASE)
 MULTIPLIERS = {"k": 1_000, "thousand": 1_000, "m": 1_000_000, "million": 1_000_000}
@@ -32,16 +34,6 @@ def _input_numbers(obj) -> set[float]:
 
     walk(obj)
     return found
-
-
-def _report_text(report: dict) -> str:
-    parts = []
-    for value in report.values():
-        if isinstance(value, str):
-            parts.append(value)
-        elif isinstance(value, list):
-            parts.extend(str(v) for v in value)
-    return "\n".join(parts)
 
 
 def cited_amounts(text: str) -> list[tuple[str, float, float]]:
@@ -70,7 +62,7 @@ def grade(result: dict, case: dict) -> dict | None:
     allowed = _input_numbers(result["review_input"])
     invented = [
         written
-        for written, value, tol in cited_amounts(_report_text(report))
+        for written, value, tol in cited_amounts(report_text(report))
         if not any(abs(value - a) <= tol for a in allowed)
     ]
     return {
