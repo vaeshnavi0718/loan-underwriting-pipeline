@@ -142,6 +142,7 @@ What each application should produce is written down in [`evals/cases/review_cas
 | `review` | `schema` (code) | The report has all five fields with the right types | yes |
 | `review` | `grounding` (code) | Every dollar amount in the report exists in the data the agent was given | yes |
 | `review` | `no_decision` (code) | The report never recommends or implies approve/deny ("should be approved", "would likely qualify", "strong candidate") | yes |
+| `judged` | `issue_recall` (LLM judge) | The report states every fact listed under `must_mention` for that application | no, needs an API key |
 
 CI runs without an API key, so the Review Agent uses its fallback report there and the run costs nothing. Suites that grade the LLM's actual reasoning run locally with `GROQ_API_KEY` set. Latest results are summarized in [`evals/RESULTS.md`](evals/RESULTS.md), and the plan for the rest of the suite is in [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
