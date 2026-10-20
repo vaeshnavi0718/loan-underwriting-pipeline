@@ -3,7 +3,10 @@
 # expected_status   where the pipeline should stop. Applications missing a
 #                   required document pause before the Review Agent runs.
 # must_mention      facts the report has to surface clearly. Graded by an
-#                   LLM judge that must quote the supporting text.
+#                   LLM judge that must quote the supporting text. Write
+#                   checkable content (numbers, events), not adjectives:
+#                   "Fair credit score of 648" failed a report that said
+#                   "648 (sub-prime)", though the fact was there.
 # must_not_claim    things the report must NOT say. These catch false alarms
 #                   and known misreadings seen in real runs.
 #
@@ -14,7 +17,7 @@
   scenario: Strong applicant (clean control)
   expected_status: AWAITING_HUMAN_DECISION
   must_mention:
-    - Strong credit score of 782 with no late payments
+    - Credit score of 782 with no late payments
     - Low debt-to-income ratio (about 9%)
   must_not_claim:
     - Any inconsistency or discrepancy between the documents
@@ -26,7 +29,7 @@
   expected_status: AWAITING_HUMAN_DECISION
   must_mention:
     - High debt-to-income ratio (about 56%, $2,850 debt on $5,100 income)
-    - Thin cash cushion (average balance $2,100 against $5,050 monthly deposits)
+    - Low cash reserves or cash-flow stability (average balance $2,100 against $5,050 monthly deposits)
   must_not_claim:
     - An income or deposit mismatch
     - A problem with the applicant's identity or ID document
@@ -35,7 +38,7 @@
   scenario: Low credit score
   expected_status: AWAITING_HUMAN_DECISION
   must_mention:
-    - Low credit score of 571
+    - Credit score of 571
     - Two payments 30+ days late in the last 12 months
   must_not_claim:
     - An income or deposit mismatch
@@ -66,9 +69,9 @@
   scenario: Borderline, needs manual review
   expected_status: AWAITING_HUMAN_DECISION
   must_mention:
-    - Fair credit score of 648 with one late payment in the last 12 months
+    - Credit score of 648 with one late payment in the last 12 months
     - Moderate debt-to-income ratio (about 34%)
-    - Thin cash cushion (average balance $2,600 against $5,550 monthly deposits)
+    - Low cash reserves or cash-flow stability (average balance $2,600 against $5,550 monthly deposits)
   must_not_claim:
     - An income or deposit mismatch
     - A problem with the applicant's identity or ID document
