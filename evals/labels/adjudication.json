@@ -1,0 +1,4 @@
+[
+ {"n": 6, "correct": "yes", "why": "The report lists a $4,250 vs $4,300 gap under inconsistencies, hedged with 'no formal discrepancy was flagged'. Same pattern the judge flagged for APP-002 and APP-010; the judge was lenient on the hedge."},
+ {"n": 11, "correct": "no", "why": "The inconsistencies list is empty and the report only states the deposit and balance figures; it never claims they disagree."}
+]
