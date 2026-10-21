@@ -23,7 +23,8 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 - [x] False alarm grader (LLM judge): nothing on the must_not_claim list, including the APP-008 misreading
 - [x] Judge hardening: reason before answering, judge errors reported separately from results, clean stop at the daily quota
 - [ ] Hand-label 20 reports and record how often the judge agrees
-- [ ] Prompt injection set: instructions hidden in PDFs; report stays neutral and status never changes
+- [x] Prompt injection set: 8 attacks in documents and form fields; status never changes (tested in CI)
+- [ ] Injection, judge part: tell a report that *describes* an attack from one that *follows* it
 - [ ] Manual GitHub Actions workflow for the suites that call the LLM
 
 ## Phase 2: Extraction dataset and baselines

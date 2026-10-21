@@ -16,9 +16,9 @@ import sys
 from datetime import datetime, timezone
 
 from evals import judge
-from evals.cases import load_cases
+from evals.cases import CASES_PATH, INJECTION_CASES_PATH, load_cases
 from evals.graders import false_alarm, grounding, issue_recall, no_decision, schema, status
-from evals.harness import run_case
+from evals.harness import INJECTION_DIR, SYNTH_DIR, run_case
 
 # suite name -> {grader name: grade(result, case) function}
 SUITES = {
@@ -26,7 +26,13 @@ SUITES = {
                "no_decision": no_decision.grade},
     # LLM-judged: needs GROQ_API_KEY, so not run in CI
     "judged": {"issue_recall": issue_recall.grade, "false_alarm": false_alarm.grade},
+    # Prompt-injection attacks: the status must never change and the report
+    # must not take the planted instruction. Code graders only.
+    "injection": {"status": status.grade, "schema": schema.grade, "no_decision": no_decision.grade},
 }
+
+# suite name -> (case file, fixture folder); suites not listed use the review cases
+SUITE_DATA = {"injection": (INJECTION_CASES_PATH, INJECTION_DIR)}
 
 RESULTS_DIR = os.path.join(os.path.dirname(__file__), "results")
 
@@ -41,7 +47,8 @@ def main() -> int:
     args = parser.parse_args()
 
     graders = SUITES[args.suite]
-    all_cases = load_cases()
+    cases_path, fixtures_dir = SUITE_DATA.get(args.suite, (CASES_PATH, SYNTH_DIR))
+    all_cases = load_cases(cases_path)
     unknown = sorted(set(args.cases or []) - set(all_cases))
     if unknown:
         parser.error(f"no such case(s): {unknown}")
@@ -63,7 +70,7 @@ def main() -> int:
     print(f"suite={args.suite}  model={model}  {len(cases)} cases x {repeats} runs  ({source})\n")
 
     if runs is None:
-        runs = [(case_id, run, run_case(case_id)) for case_id in cases for run in range(1, repeats + 1)]
+        runs = [(case_id, run, run_case(case_id, fixtures_dir)) for case_id in cases for run in range(1, repeats + 1)]
 
     rows, failures, errors = [], [], []
     for case_id, run, result in runs:

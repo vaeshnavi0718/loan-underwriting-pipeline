@@ -1,5 +1,5 @@
 """
-Loads and validates evals/cases/review_cases.yaml.
+Loads and validates the case files in evals/cases/.
 
 A malformed case file fails loudly here instead of silently skewing
 grades later.
@@ -9,6 +9,7 @@ import os
 import yaml
 
 CASES_PATH = os.path.join(os.path.dirname(__file__), "cases", "review_cases.yaml")
+INJECTION_CASES_PATH = os.path.join(os.path.dirname(__file__), "cases", "injection_cases.yaml")
 VALID_STATUSES = {"AWAITING_HUMAN_DECISION", "NEEDS_DOCUMENTATION"}
 
 
