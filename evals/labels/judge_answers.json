@@ -1,0 +1,162 @@
+[
+ {
+  "n": 1,
+  "run": "B2",
+  "case_id": "APP-008",
+  "kind": "claims",
+  "item": "Income stability is high or strong, or that it conflicts with the cash-flow rating",
+  "judge": "yes"
+ },
+ {
+  "n": 2,
+  "run": "A1",
+  "case_id": "APP-001",
+  "kind": "states",
+  "item": "Low debt-to-income ratio (about 9%)",
+  "judge": "yes"
+ },
+ {
+  "n": 3,
+  "run": "A3",
+  "case_id": "APP-008",
+  "kind": "claims",
+  "item": "Income stability is high or strong, or that it conflicts with the cash-flow rating",
+  "judge": "yes"
+ },
+ {
+  "n": 4,
+  "run": "B3",
+  "case_id": "APP-008",
+  "kind": "claims",
+  "item": "Income stability is high or strong, or that it conflicts with the cash-flow rating",
+  "judge": "yes"
+ },
+ {
+  "n": 5,
+  "run": "B1",
+  "case_id": "APP-002",
+  "kind": "claims",
+  "item": "A problem with the applicant's identity or ID document",
+  "judge": "no"
+ },
+ {
+  "n": 6,
+  "run": "B2",
+  "case_id": "APP-003",
+  "kind": "claims",
+  "item": "An income or deposit mismatch",
+  "judge": "no"
+ },
+ {
+  "n": 7,
+  "run": "B2",
+  "case_id": "APP-012",
+  "kind": "states",
+  "item": "Date of birth (2010-04-22) means the applicant is about 16, a minor",
+  "judge": "yes"
+ },
+ {
+  "n": 8,
+  "run": "A3",
+  "case_id": "APP-007",
+  "kind": "claims",
+  "item": "An income or deposit mismatch",
+  "judge": "no"
+ },
+ {
+  "n": 9,
+  "run": "B2",
+  "case_id": "APP-001",
+  "kind": "states",
+  "item": "Low debt-to-income ratio (about 9%)",
+  "judge": "yes"
+ },
+ {
+  "n": 10,
+  "run": "A3",
+  "case_id": "APP-010",
+  "kind": "states",
+  "item": "Part-time employment",
+  "judge": "yes"
+ },
+ {
+  "n": 11,
+  "run": "A1",
+  "case_id": "APP-006",
+  "kind": "claims",
+  "item": "An income or deposit mismatch",
+  "judge": "no"
+ },
+ {
+  "n": 12,
+  "run": "A1",
+  "case_id": "APP-007",
+  "kind": "claims",
+  "item": "A problem with the applicant's identity or ID document",
+  "judge": "no"
+ },
+ {
+  "n": 13,
+  "run": "A2",
+  "case_id": "APP-008",
+  "kind": "claims",
+  "item": "Income stability is high or strong, or that it conflicts with the cash-flow rating",
+  "judge": "yes"
+ },
+ {
+  "n": 14,
+  "run": "A2",
+  "case_id": "APP-002",
+  "kind": "states",
+  "item": "High debt-to-income ratio (about 56%, $2,850 debt on $5,100 income)",
+  "judge": "yes"
+ },
+ {
+  "n": 15,
+  "run": "B3",
+  "case_id": "APP-002",
+  "kind": "claims",
+  "item": "A problem with the applicant's identity or ID document",
+  "judge": "no"
+ },
+ {
+  "n": 16,
+  "run": "B3",
+  "case_id": "APP-006",
+  "kind": "states",
+  "item": "The ID document could not be verified",
+  "judge": "yes"
+ },
+ {
+  "n": 17,
+  "run": "A1",
+  "case_id": "APP-001",
+  "kind": "states",
+  "item": "Credit score of 782 with no late payments",
+  "judge": "yes"
+ },
+ {
+  "n": 18,
+  "run": "A3",
+  "case_id": "APP-010",
+  "kind": "claims",
+  "item": "An income or deposit mismatch",
+  "judge": "yes"
+ },
+ {
+  "n": 19,
+  "run": "A1",
+  "case_id": "APP-005",
+  "kind": "states",
+  "item": "Stated income ($8,000/month) is far above observed bank deposits ($3,100/month)",
+  "judge": "yes"
+ },
+ {
+  "n": 20,
+  "run": "B1",
+  "case_id": "APP-003",
+  "kind": "claims",
+  "item": "An income or deposit mismatch",
+  "judge": "no"
+ }
+]
