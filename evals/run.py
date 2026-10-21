@@ -15,8 +15,9 @@ import os
 import sys
 from datetime import datetime, timezone
 
+from evals import judge
 from evals.cases import load_cases
-from evals.graders import grounding, issue_recall, no_decision, schema, status
+from evals.graders import false_alarm, grounding, issue_recall, no_decision, schema, status
 from evals.harness import run_case
 
 # suite name -> {grader name: grade(result, case) function}
@@ -24,7 +25,7 @@ SUITES = {
     "review": {"status": status.grade, "schema": schema.grade, "grounding": grounding.grade,
                "no_decision": no_decision.grade},
     # LLM-judged: needs GROQ_API_KEY, so not run in CI
-    "judged": {"issue_recall": issue_recall.grade},
+    "judged": {"issue_recall": issue_recall.grade, "false_alarm": false_alarm.grade},
 }
 
 RESULTS_DIR = os.path.join(os.path.dirname(__file__), "results")
@@ -64,12 +65,19 @@ def main() -> int:
     if runs is None:
         runs = [(case_id, run, run_case(case_id)) for case_id in cases for run in range(1, repeats + 1)]
 
-    rows, failures = [], []
+    rows, failures, errors = [], [], []
     for case_id, run, result in runs:
-        grades = {name: grade(result, all_cases[case_id]) for name, grade in graders.items()}
+        try:
+            grades = {name: grade(result, all_cases[case_id]) for name, grade in graders.items()}
+        except judge.JudgeQuotaExhausted as exc:
+            print(f"\nSTOPPED at {case_id} run {run}: {exc}")
+            print("Judge answers so far are cached; re-run the same command once the limit resets.")
+            return 2
         rows.append({"case_id": case_id, "run": run, "result": result, "grades": grades})
         for name, g in grades.items():
-            if g is not None and not g["passed"]:
+            if g is not None and g.get("error"):
+                errors.append(f"{case_id} run {run}  {name}: {g['detail']}")
+            elif g is not None and not g["passed"]:
                 failures.append(f"{case_id} run {run}  {name}: {g['detail']}")
 
     totals = {}
@@ -78,7 +86,9 @@ def main() -> int:
         case_rows = [r for r in rows if r["case_id"] == case_id]
         line = f"{case_id:<9}{case_rows[0]['result']['status']:<26}"
         for name in graders:
-            applicable = [r["grades"][name] for r in case_rows if r["grades"][name] is not None]
+            # a grade the judge couldn't produce says nothing about the report: left out of the totals
+            applicable = [r["grades"][name] for r in case_rows
+                          if r["grades"][name] is not None and not r["grades"][name].get("error")]
             passed = sum(g["passed"] for g in applicable)
             t = totals.setdefault(name, [0, 0])
             t[0] += passed
@@ -91,6 +101,10 @@ def main() -> int:
         print("\nFAILURES")
         for f in failures:
             print(" " + f)
+    if errors:
+        print("\nJUDGE ERRORS (not graded, excluded from totals; re-run to fill them in)")
+        for e in errors:
+            print(" " + e)
 
     os.makedirs(RESULTS_DIR, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%M%SZ")
@@ -103,7 +117,7 @@ def main() -> int:
             f, indent=2, default=str,
         )
     print(f"\n-> {os.path.relpath(out_path)}")
-    return 1 if failures else 0
+    return 1 if failures or errors else 0
 
 
 if __name__ == "__main__":

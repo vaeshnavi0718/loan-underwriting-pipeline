@@ -62,3 +62,18 @@ def test_prompt_contains_question_and_whole_report():
     judge.ask("Does it mention the DOB?", REPORT, call=capture)
     assert "Does it mention the DOB?" in seen["user"]
     assert REPORT in seen["user"]
+
+
+def test_daily_quota_stops_instead_of_retrying():
+    calls = []
+
+    def exhausted(system, user):
+        calls.append(1)
+        raise judge.JudgeQuotaExhausted("daily limit reached")
+
+    try:
+        judge.ask("Q?", REPORT, call=exhausted)
+        raise AssertionError("expected JudgeQuotaExhausted")
+    except judge.JudgeQuotaExhausted:
+        pass
+    assert len(calls) == 1

@@ -3,6 +3,8 @@ Shared LLM judge for graders that need to understand meaning.
 
 Design rules (see docs/ROADMAP.md, Phase 1):
 - One yes/no question per call, never a 1-10 score.
+- The judge writes a one-sentence reason before its answer. Without it, it
+  answered "no" 5/5 times to a fact a report stated word for word.
 - The judge sees the WHOLE report, every field.
 - A "yes" must quote the report. The quote is then checked in code: a quote
   that isn't actually in the report makes the verdict "unsupported", so a
@@ -17,6 +19,7 @@ import hashlib
 import json
 import os
 import re
+import time
 import unicodedata
 from typing import Callable
 
@@ -26,7 +29,8 @@ load_dotenv()
 
 JUDGE_MODEL = os.environ.get("JUDGE_MODEL", "qwen/qwen3.8-27b")
 CACHE_PATH = os.path.join(os.path.dirname(__file__), ".judge_cache.json")
-MAX_ATTEMPTS = 3
+MAX_ATTEMPTS = 5
+BACKOFF_SECONDS = 4  # doubles each attempt: 4, 8, 16, 32
 
 SYSTEM_PROMPT = (
     "You are a strict evaluator checking a loan underwriting report written by another model. "
@@ -43,7 +47,13 @@ REPORT:
 {report}
 \"\"\"
 
-Return JSON: {{"answer": "yes" or "no", "evidence": "exact quote from the report for a yes, otherwise empty"}}"""
+Return JSON: {{"reason": "one sentence on what the report says about this", "answer": "yes" or "no", "evidence": "exact quote from the report for a yes, otherwise empty"}}"""
+
+class JudgeQuotaExhausted(RuntimeError):
+    """The judge's daily token or request allowance is used up. Waiting
+    minutes per call would look like a hang, so the run stops instead;
+    answers so far are cached and the next run picks up from there."""
+
 
 # call(system, user) -> raw model output
 JudgeCall = Callable[[str, str], str]
@@ -67,15 +77,21 @@ def quote_in_report(quote: str, report: str) -> bool:
 
 
 def _groq_call(system: str, user: str) -> str:
-    from groq import Groq
+    from groq import Groq, RateLimitError
 
-    client = Groq(api_key=os.environ["GROQ_API_KEY"])
-    completion = client.chat.completions.create(
-        model=JUDGE_MODEL,
-        messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
-        temperature=0,
-        response_format={"type": "json_object"},
-    )
+    # the SDK retries short per-minute rate limits itself, honoring retry-after
+    client = Groq(api_key=os.environ["GROQ_API_KEY"], max_retries=3)
+    try:
+        completion = client.chat.completions.create(
+            model=JUDGE_MODEL,
+            messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
+    except RateLimitError as exc:
+        if "per day" in str(exc):
+            raise JudgeQuotaExhausted(f"{JUDGE_MODEL} daily limit reached: {exc}") from exc
+        raise
     return completion.choices[0].message.content
 
 
@@ -103,28 +119,35 @@ def ask(question: str, report: str, call: JudgeCall | None = None, use_cache: bo
     if key in cache:
         return cache[key]
 
+    live = call is None
     call = call or _groq_call
     last_error = ""
-    for _ in range(MAX_ATTEMPTS):
+    for attempt in range(MAX_ATTEMPTS):
+        if attempt and live:
+            time.sleep(BACKOFF_SECONDS * 2 ** (attempt - 1))
         try:
             parsed = json.loads(call(SYSTEM_PROMPT, prompt))
             answer = str(parsed.get("answer", "")).strip().lower()
             evidence = str(parsed.get("evidence", "") or "").strip()
+            reason = str(parsed.get("reason", "") or "").strip()
             if answer not in {"yes", "no"}:
                 raise ValueError(f"answer was {answer!r}")
             break
+        except JudgeQuotaExhausted:
+            raise
         except Exception as exc:  # noqa: BLE001
             last_error = str(exc)
     else:
         return {"verdict": "error", "evidence": "", "model": JUDGE_MODEL, "detail": last_error}
 
     if answer == "yes" and not quote_in_report(evidence, report):
-        result = {"verdict": "unsupported", "evidence": evidence, "model": JUDGE_MODEL,
+        result = {"verdict": "unsupported", "evidence": evidence, "reason": reason, "model": JUDGE_MODEL,
                   "detail": "judge said yes but its quote is not in the report"}
     else:
-        result = {"verdict": answer, "evidence": evidence if answer == "yes" else "", "model": JUDGE_MODEL, "detail": ""}
+        result = {"verdict": answer, "evidence": evidence if answer == "yes" else "", "reason": reason,
+                  "model": JUDGE_MODEL, "detail": ""}
 
-    if use_cache and call is _groq_call:
+    if use_cache and live:
         cache = _load_cache()
         cache[key] = result
         _save_cache(cache)

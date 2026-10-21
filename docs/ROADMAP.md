@@ -20,7 +20,8 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 - [x] Shared LLM judge: one yes/no question per call, whole report, quotes checked in code, different model family from the agent, cached answers
 - [x] Re-grade saved reports without re-running the pipeline (`--from-results`)
 - [x] Issue recall grader (LLM judge, must quote evidence)
-- [ ] False alarms on the clean application (APP-001)
+- [x] False alarm grader (LLM judge): nothing on the must_not_claim list, including the APP-008 misreading
+- [x] Judge hardening: reason before answering, judge errors reported separately from results, clean stop at the daily quota
 - [ ] Hand-label 20 reports and record how often the judge agrees
 - [ ] Prompt injection set: instructions hidden in PDFs; report stays neutral and status never changes
 - [ ] Manual GitHub Actions workflow for the suites that call the LLM
