@@ -14,19 +14,20 @@ from app.harness import orchestrator
 from app.harness.state import ApplicationState
 
 SYNTH_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "synthetic_applications")
+INJECTION_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "injection_cases")
 DOC_TYPES = ["pay_stub", "bank_statement", "credit_report", "id_document"]
 
 
-def list_cases() -> list[str]:
+def list_cases(base_dir: str = SYNTH_DIR) -> list[str]:
     return sorted(
-        name for name in os.listdir(SYNTH_DIR)
-        if os.path.isfile(os.path.join(SYNTH_DIR, name, "application.json"))
+        name for name in os.listdir(base_dir)
+        if os.path.isfile(os.path.join(base_dir, name, "application.json"))
     )
 
 
-def run_case(case_id: str) -> dict:
+def run_case(case_id: str, base_dir: str = SYNTH_DIR) -> dict:
     """Runs the pipeline on one fixture and returns everything graders need."""
-    case_dir = os.path.join(SYNTH_DIR, case_id)
+    case_dir = os.path.join(base_dir, case_id)
     with open(os.path.join(case_dir, "application.json")) as f:
         fixture = json.load(f)
 
