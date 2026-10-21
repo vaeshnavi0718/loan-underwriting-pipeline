@@ -22,3 +22,5 @@ jobs:
         run: pytest -v
       - name: Code-graded evals
         run: python -m evals.run --suite review
+      - name: Prompt-injection suite
+        run: python -m evals.run --suite injection
