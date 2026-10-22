@@ -4,7 +4,7 @@ Latest run of each suite. Raw per-application output for every run is in `result
 
 ## review
 
-Run 2026-10-20 · model `openai/gpt-oss-120b` · 12 applications × 3 runs · [raw results](results/2026-10-20T191137Z_review.json)
+Run 2026-10-21, after the Task 11 prompt fix · model `openai/gpt-oss-120b` · 12 applications × 3 runs · [raw results](results/2026-10-21T115125Z_review.json). Every code grader passed, as on the 2026-10-20 run ([raw results](results/2026-10-20T191137Z_review.json)) whose notes are below.
 
 | Grader | Passed | Notes |
 |---|---|---|
@@ -25,6 +25,17 @@ Judge `qwen/qwen3.8-27b`, re-graded 2026-10-21 from the two 2026-10-20 review ru
 | Report claims nothing on the `must_not_claim` list | 26/30 | 27/30 | APP-008 risk-band misreading (2 + 3 reports); a ~1% income gap called a mismatch (APP-002, APP-010 in run A) |
 
 Negative control (facts from other applications, so absent): **0/14** wrongly accepted. No judge errors in any run.
+
+**Prompt fix (Task 11), before and after.** The Review Agent prompt now says every risk band is a risk level ("high" = high risk) and that only material disagreements are inconsistencies. It names no case. After-fix reports graded with the same judge ([raw results](results/2026-10-22T151941Z_judged.json)):
+
+| Grader | Before (run A) | Before (run B) | After |
+|---|---|---|---|
+| Report states every `must_mention` fact | 30/30 | 30/30 | 30/30 |
+| Report claims nothing on the `must_not_claim` list | 26/30 | 27/30 | 28/30 |
+| APP-008 risk-band misreading | 2 reports | 3 reports | 0 clear, 1 borderline |
+| ~1% income gap called an inconsistency | 2 reports | 0 | 0 |
+
+Both after-fix flags were read by hand. APP-010 run 3 is a judge error: it counted "average bank balance $800 versus monthly deposits $2,050" (a cash-reserve point) as an income mismatch. APP-008 run 2 is borderline: it says "Income appears stable on paper", yet the same report reads the band correctly as "high income-stability risk". The real 37% APP-008 income gap is still reported in all 3 after-fix reports.
 
 **Checking the judge before trusting it:**
 

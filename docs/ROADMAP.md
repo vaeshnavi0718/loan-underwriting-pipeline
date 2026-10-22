@@ -27,6 +27,7 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 - [x] Prompt injection set: 8 attacks in documents and form fields; status never changes (tested in CI)
 - [ ] Injection, judge part: tell a report that *describes* an attack from one that *follows* it
 - [ ] Manual GitHub Actions workflow for the suites that call the LLM
+- [x] Fix the Review Agent prompt for the failures found (risk bands, ~1% gaps); false alarms 26/30 and 27/30 before, 28/30 after, both remaining flags read by hand
 
 ## Phase 2: Extraction dataset and baselines
 
