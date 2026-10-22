@@ -22,7 +22,7 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 - [x] Issue recall grader (LLM judge, must quote evidence)
 - [x] False alarm grader (LLM judge): nothing on the must_not_claim list, including the APP-008 misreading
 - [x] Judge hardening: reason before answering, judge errors reported separately from results, clean stop at the daily quota
-- [x] Judge batching: one call per report for all its questions (each still answered and quote-checked separately); agreed with one-at-a-time verdicts on 141/141 questions
+- [x] Judge batching: one call per report for all its questions (each still answered and quote-checked separately); agreed with one-at-a-time verdicts on 141/141 questions; a verdict that would fail a report is re-asked on its own
 - [x] Hand-label 20 reports and record how often the judge agrees (18/20; judge and human each right on one disagreement)
 - [x] Prompt injection set: 8 attacks in documents and form fields; status never changes (tested in CI)
 - [ ] Injection, judge part: tell a report that *describes* an attack from one that *follows* it

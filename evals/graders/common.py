@@ -29,9 +29,20 @@ def judge_report(case: dict, text: str) -> dict[str, dict]:
 
     Both judge graders call this with the same case and report, so they send
     the same prompt and the second one is a cache hit: one call per report.
-    Batched and one-at-a-time verdicts agreed on 141/141 questions (39 reports).
+
+    A batched verdict that would fail the report (a fact not found, a false
+    claim found) is asked again on its own, the setup the judge was
+    calibrated in. On new reports, batching missed 3 facts that single
+    questions found, twice by stitching two sentences into one quote.
     Returns {question: verdict}.
     """
-    questions = [RECALL_QUESTION.format(fact=f) for f in case.get("must_mention", [])]
-    questions += [FALSE_ALARM_QUESTION.format(claim=c) for c in case.get("must_not_claim", [])]
-    return dict(zip(questions, judge.ask_many(questions, text)))
+    recall = [RECALL_QUESTION.format(fact=f) for f in case.get("must_mention", [])]
+    false_alarm = [FALSE_ALARM_QUESTION.format(claim=c) for c in case.get("must_not_claim", [])]
+    verdicts = dict(zip(recall + false_alarm, judge.ask_many(recall + false_alarm, text)))
+    for question in recall:
+        if verdicts[question]["verdict"] in {"no", "unsupported"}:
+            verdicts[question] = judge.ask(question, text)
+    for question in false_alarm:
+        if verdicts[question]["verdict"] == "yes":
+            verdicts[question] = judge.ask(question, text)
+    return verdicts
