@@ -9,12 +9,7 @@ A judge error is reported as an error, never as a missed fact. Skipped
 (None) when no judge is available, e.g. in CI.
 """
 from evals import judge
-from evals.graders.common import report_text
-
-QUESTION = (
-    "Does the report state the following? Wording, rounding and number formatting may differ, "
-    "but the substance must be there: {fact}"
-)
+from evals.graders.common import RECALL_QUESTION, judge_report, report_text
 
 
 def grade(result: dict, case: dict) -> dict | None:
@@ -22,10 +17,10 @@ def grade(result: dict, case: dict) -> dict | None:
     if not report or not case["must_mention"] or not judge.available():
         return None
 
-    text = report_text(report)
+    verdicts = judge_report(case, report_text(report))
     missed, evidence = [], {}
     for fact in case["must_mention"]:
-        verdict = judge.ask(QUESTION.format(fact=fact), text)
+        verdict = verdicts[RECALL_QUESTION.format(fact=fact)]
         if verdict["verdict"] == "error":
             return {"passed": False, "error": True, "detail": f"judge error on '{fact}': {verdict['detail']}"}
         if verdict["verdict"] == "yes":

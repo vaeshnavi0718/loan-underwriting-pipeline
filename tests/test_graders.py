@@ -105,13 +105,14 @@ def _with_fake_judge(monkeypatch, answers: dict):
     """answers: fact substring -> (answer, evidence)"""
     monkeypatch.setattr(judge, "available", lambda: True)
 
-    def fake_ask(question, report, **kwargs):
+    def fake_ask(question):
         for fact, (answer, evidence) in answers.items():
             if fact in question:
                 return {"verdict": answer, "evidence": evidence, "detail": "fake error"}
         raise AssertionError(question)
 
-    monkeypatch.setattr(judge, "ask", fake_ask)
+    monkeypatch.setattr(judge, "ask_many", lambda questions, report, **kwargs: [fake_ask(q) for q in questions])
+    monkeypatch.setattr(judge, "ask", lambda question, report, **kwargs: fake_ask(question))
 
 
 def test_issue_recall_passes_when_every_fact_found(monkeypatch):
@@ -176,6 +177,42 @@ def test_judge_error_is_an_error_not_a_pass(monkeypatch):
     _with_fake_judge(monkeypatch, {"income": ("error", ""), "minor": ("no", "")})
     g = false_alarm.grade(_result(summary="x"), NOT_CLAIM)
     assert g["error"]
+
+
+def test_judge_graders_share_one_batched_call(monkeypatch):
+    # identical question lists mean an identical prompt, so the second grader is a cache hit
+    monkeypatch.setattr(judge, "available", lambda: True)
+    sent = []
+
+    def fake_ask_many(questions, report, **kwargs):
+        sent.append((tuple(questions), report))
+        return [{"verdict": "no", "evidence": "", "detail": ""} for _ in questions]
+
+    monkeypatch.setattr(judge, "ask_many", fake_ask_many)
+    monkeypatch.setattr(judge, "ask", lambda question, report, **kwargs: {"verdict": "no", "evidence": "", "detail": ""})
+    case = {**CASE, **NOT_CLAIM}
+    issue_recall.grade(_result(summary="x"), case)
+    false_alarm.grade(_result(summary="x"), case)
+    assert len(sent) == 2 and sent[0] == sent[1] and len(sent[0][0]) == 4
+
+
+def test_failing_batched_verdicts_are_asked_again_alone(monkeypatch):
+    # batching said "missed" and "claimed"; one question at a time says found and not claimed
+    monkeypatch.setattr(judge, "available", lambda: True)
+    monkeypatch.setattr(judge, "ask_many", lambda questions, report, **kwargs: [
+        {"verdict": "unsupported" if "571" in q else "yes" if "income" in q else "no", "evidence": "x", "detail": ""}
+        for q in questions])
+    asked = []
+
+    def single(question, report, **kwargs):
+        asked.append(question)
+        return {"verdict": "yes" if "571" in question else "no", "evidence": "score of 571", "detail": ""}
+
+    monkeypatch.setattr(judge, "ask", single)
+    case = {**CASE, **NOT_CLAIM}
+    assert issue_recall.grade(_result(summary="x"), case)["facts_found"] == 1  # "late" stays missed
+    assert false_alarm.grade(_result(summary="x"), case)["passed"]
+    assert all("571" in q or "late" in q or "income" in q for q in asked)
 
 
 def test_no_decision_excuses_quoted_input_but_not_own_words():

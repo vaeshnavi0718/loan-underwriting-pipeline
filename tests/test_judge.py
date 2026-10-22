@@ -77,3 +77,37 @@ def test_daily_quota_stops_instead_of_retrying():
     except judge.JudgeQuotaExhausted:
         pass
     assert len(calls) == 1
+
+
+def test_ask_many_gives_each_question_its_own_verdict():
+    reply = json.dumps({"answers": [
+        {"id": 1, "answer": "yes", "evidence": "Income stability is rated high", "reason": "r"},
+        {"id": 2, "answer": "yes", "evidence": "The applicant is a minor", "reason": "r"},
+        {"id": 3, "answer": "no", "evidence": "", "reason": "r"},
+    ]})
+    verdicts = judge.ask_many(["Q1?", "Q2?", "Q3?"], REPORT, call=fake(reply))
+    assert [v["verdict"] for v in verdicts] == ["yes", "unsupported", "no"]
+
+
+def test_ask_many_retries_when_an_answer_is_missing():
+    short = json.dumps({"answers": [{"id": 1, "answer": "no"}]})
+    full = json.dumps({"answers": [{"id": 1, "answer": "no"}, {"id": 2, "answer": "no"}]})
+    verdicts = judge.ask_many(["Q1?", "Q2?"], REPORT, call=fake(short, full))
+    assert [v["verdict"] for v in verdicts] == ["no", "no"]
+
+
+def test_ask_many_error_marks_every_question():
+    verdicts = judge.ask_many(["Q1?", "Q2?"], REPORT, call=fake("x", "y", "z", "w", "v"))
+    assert [v["verdict"] for v in verdicts] == ["error", "error"]
+
+
+def test_ask_many_puts_report_in_prompt_once():
+    seen = {}
+
+    def capture(system, user):
+        seen["user"] = user
+        return json.dumps({"answers": [{"id": 1, "answer": "no"}, {"id": 2, "answer": "no"}]})
+
+    judge.ask_many(["First?", "Second?"], REPORT, call=capture)
+    assert seen["user"].count(REPORT) == 1
+    assert "1. First?" in seen["user"] and "2. Second?" in seen["user"]

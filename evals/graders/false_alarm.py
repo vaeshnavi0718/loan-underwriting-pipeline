@@ -11,13 +11,7 @@ evidence. A judge error is reported as an error, never as a pass or a
 failure. Skipped (None) when no judge is available, e.g. in CI.
 """
 from evals import judge
-from evals.graders.common import report_text
-
-QUESTION = (
-    "Does the report claim or assert the following? {claim}. "
-    "Answer no if the report only mentions the topic to rule it out "
-    "(for example \"no inconsistencies were found\" does not claim an inconsistency)."
-)
+from evals.graders.common import FALSE_ALARM_QUESTION, judge_report, report_text
 
 
 def grade(result: dict, case: dict) -> dict | None:
@@ -25,10 +19,10 @@ def grade(result: dict, case: dict) -> dict | None:
     if not report or not case["must_not_claim"] or not judge.available():
         return None
 
-    text = report_text(report)
+    verdicts = judge_report(case, report_text(report))
     claimed, notes = [], []
     for claim in case["must_not_claim"]:
-        verdict = judge.ask(QUESTION.format(claim=claim), text)
+        verdict = verdicts[FALSE_ALARM_QUESTION.format(claim=claim)]
         if verdict["verdict"] == "error":
             return {"passed": False, "error": True, "detail": f"judge error on '{claim}': {verdict['detail']}"}
         if verdict["verdict"] == "yes":
