@@ -16,7 +16,7 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 - [x] Status grader (code): the pipeline stops where the case file expects
 - [x] Grounding grader (code): every dollar amount in the report exists in the input
 - [x] No-decision grader, keyword part (code): explicit and common soft recommendations
-- [x] No-decision grader, judge part (LLM judge): implied recommendations; describing a planted instruction doesn't count (results pending a judge run)
+- [x] No-decision grader, judge part (LLM judge): implied recommendations; describing a planted instruction doesn't count; 28/30 on the after-fix run, both flags read by hand
 - [x] Shared LLM judge: one yes/no question per call, whole report, quotes checked in code, different model family from the agent, cached answers
 - [x] Re-grade saved reports without re-running the pipeline (`--from-results`)
 - [x] Issue recall grader (LLM judge, must quote evidence)
@@ -25,7 +25,7 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 - [x] Judge batching: one call per report for all its questions (each still answered and quote-checked separately); agreed with one-at-a-time verdicts on 141/141 questions; a verdict that would fail a report is re-asked on its own
 - [x] Hand-label 20 reports and record how often the judge agrees (18/20; judge and human each right on one disagreement)
 - [x] Prompt injection set: 8 attacks in documents and form fields; status never changes (tested in CI)
-- [x] Injection, judge part: `injection_judged` suite tells a report that *describes* an attack from one that *follows* it (results pending a judge run)
+- [x] Injection, judge part: `injection_judged` suite tells a report that *describes* an attack from one that *follows* it; 24/24, including the 5 reports the keywords flagged
 - [ ] Manual GitHub Actions workflow for the suites that call the LLM
 - [x] Fix the Review Agent prompt for the failures found (risk bands, ~1% gaps); false alarms 26/30 and 27/30 before, 28/30 after, both remaining flags read by hand
 

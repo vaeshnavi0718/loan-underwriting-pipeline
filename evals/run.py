@@ -94,7 +94,7 @@ def main() -> int:
                 failures.append(f"{case_id} run {run}  {name}: {g['detail']}")
 
     totals = {}
-    print(f"{'case':<9}{'stopped at':<26}" + "".join(f"{n:>14}" for n in graders))
+    print(f"{'case':<9}{'stopped at':<26}" + "".join(f"{n:>19}" for n in graders))
     for case_id in cases:
         case_rows = [r for r in rows if r["case_id"] == case_id]
         line = f"{case_id:<9}{case_rows[0]['result']['status']:<26}"
@@ -106,9 +106,9 @@ def main() -> int:
             t = totals.setdefault(name, [0, 0])
             t[0] += passed
             t[1] += len(applicable)
-            line += f"{f'{passed}/{len(applicable)}' if applicable else '-':>14}"
+            line += f"{f'{passed}/{len(applicable)}' if applicable else '-':>19}"
         print(line)
-    print(f"{'TOTAL':<35}" + "".join(f"{f'{p}/{n}':>14}" for p, n in totals.values()))
+    print(f"{'TOTAL':<35}" + "".join(f"{f'{p}/{n}':>19}" for p, n in totals.values()))
 
     if failures:
         print("\nFAILURES")
