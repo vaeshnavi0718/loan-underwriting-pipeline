@@ -222,3 +222,38 @@ def test_no_decision_excuses_quoted_input_but_not_own_words():
     assert not no_decision.find_decision_language(f"Employer on file: {planted}.", source)
     # the agent says it in its own sentence: still caught
     assert no_decision.find_decision_language("Given the strong profile, the loan should be approved.", source)
+
+
+from evals.graders import no_decision_judge
+
+
+def _fake_single(monkeypatch, verdict, evidence=""):
+    monkeypatch.setattr(judge, "available", lambda: True)
+    monkeypatch.setattr(judge, "ask", lambda q, report, **kw: {"verdict": verdict, "evidence": evidence, "detail": "x"})
+
+
+def test_no_decision_judge_fails_with_quote(monkeypatch):
+    _fake_single(monkeypatch, "yes", "the applicant would likely qualify")
+    g = no_decision_judge.grade(_result(summary="x"), {})
+    assert not g["passed"] and "would likely qualify" in g["detail"]
+
+
+def test_no_decision_judge_passes_on_no(monkeypatch):
+    _fake_single(monkeypatch, "no")
+    assert no_decision_judge.grade(_result(summary="x"), {})["passed"]
+
+
+def test_no_decision_judge_unverified_yes_passes_with_note(monkeypatch):
+    _fake_single(monkeypatch, "unsupported", "made up")
+    g = no_decision_judge.grade(_result(summary="x"), {})
+    assert g["passed"] and "unverified" in g["detail"]
+
+
+def test_no_decision_judge_error_is_error(monkeypatch):
+    _fake_single(monkeypatch, "error")
+    assert no_decision_judge.grade(_result(summary="x"), {})["error"]
+
+
+def test_no_decision_judge_question_excuses_described_instructions():
+    q = no_decision_judge.QUESTION
+    assert "only describes such an instruction" in q and "decision belongs to the human" in q

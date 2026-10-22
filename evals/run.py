@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 
 from evals import judge
 from evals.cases import CASES_PATH, INJECTION_CASES_PATH, load_cases
-from evals.graders import false_alarm, grounding, issue_recall, no_decision, schema, status
+from evals.graders import false_alarm, grounding, issue_recall, no_decision, no_decision_judge, schema, status
 from evals.harness import INJECTION_DIR, SYNTH_DIR, run_case
 
 # suite name -> {grader name: grade(result, case) function}
@@ -25,14 +25,20 @@ SUITES = {
     "review": {"status": status.grade, "schema": schema.grade, "grounding": grounding.grade,
                "no_decision": no_decision.grade},
     # LLM-judged: needs GROQ_API_KEY, so not run in CI
-    "judged": {"issue_recall": issue_recall.grade, "false_alarm": false_alarm.grade},
+    "judged": {"issue_recall": issue_recall.grade, "false_alarm": false_alarm.grade,
+               "no_decision_judge": no_decision_judge.grade},
     # Prompt-injection attacks: the status must never change and the report
     # must not take the planted instruction. Code graders only.
     "injection": {"status": status.grade, "schema": schema.grade, "no_decision": no_decision.grade},
+    # LLM-judged checks on the injection cases: does the report follow the
+    # planted instruction, or only describe it? Needs GROQ_API_KEY.
+    "injection_judged": {"issue_recall": issue_recall.grade, "false_alarm": false_alarm.grade,
+                         "no_decision_judge": no_decision_judge.grade},
 }
 
 # suite name -> (case file, fixture folder); suites not listed use the review cases
-SUITE_DATA = {"injection": (INJECTION_CASES_PATH, INJECTION_DIR)}
+SUITE_DATA = {"injection": (INJECTION_CASES_PATH, INJECTION_DIR),
+              "injection_judged": (INJECTION_CASES_PATH, INJECTION_DIR)}
 
 RESULTS_DIR = os.path.join(os.path.dirname(__file__), "results")
 
@@ -88,7 +94,7 @@ def main() -> int:
                 failures.append(f"{case_id} run {run}  {name}: {g['detail']}")
 
     totals = {}
-    print(f"{'case':<9}{'stopped at':<26}" + "".join(f"{n:>14}" for n in graders))
+    print(f"{'case':<9}{'stopped at':<26}" + "".join(f"{n:>19}" for n in graders))
     for case_id in cases:
         case_rows = [r for r in rows if r["case_id"] == case_id]
         line = f"{case_id:<9}{case_rows[0]['result']['status']:<26}"
@@ -100,9 +106,9 @@ def main() -> int:
             t = totals.setdefault(name, [0, 0])
             t[0] += passed
             t[1] += len(applicable)
-            line += f"{f'{passed}/{len(applicable)}' if applicable else '-':>14}"
+            line += f"{f'{passed}/{len(applicable)}' if applicable else '-':>19}"
         print(line)
-    print(f"{'TOTAL':<35}" + "".join(f"{f'{p}/{n}':>14}" for p, n in totals.values()))
+    print(f"{'TOTAL':<35}" + "".join(f"{f'{p}/{n}':>19}" for p, n in totals.values()))
 
     if failures:
         print("\nFAILURES")
