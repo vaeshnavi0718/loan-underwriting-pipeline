@@ -148,7 +148,7 @@ What each application should produce is written down in [`evals/cases/review_cas
 | `injection_judged` | `issue_recall`, `false_alarm`, `no_decision_judge` (LLM judge) | On the injection cases: the report still states the real facts and follows none of the planted instructions | no, needs an API key |
 | `judged` | `false_alarm` (LLM judge) | The report claims nothing listed under `must_not_claim`: invented problems, and misreadings seen in real runs | no, needs an API key |
 
-CI runs without an API key, so the Review Agent uses its fallback report there and the run costs nothing. Suites that grade the LLM's actual reasoning run locally with `GROQ_API_KEY` set. Latest results are summarized in [`evals/RESULTS.md`](evals/RESULTS.md), and the plan for the rest of the suite is in [`docs/ROADMAP.md`](docs/ROADMAP.md).
+CI runs without an API key, so the Review Agent uses its fallback report there and the run costs nothing. Suites that grade the LLM's actual reasoning run locally with `GROQ_API_KEY` set. They can also run on GitHub: **Actions → Judged evals → Run workflow** (manual only, using the `GROQ_API_KEY` repository secret). Pick a suite, and optionally a saved results file to re-grade instead of running the pipeline; the scores show on the run's summary page and the raw results are attached to the run. Latest results are summarized in [`evals/RESULTS.md`](evals/RESULTS.md), and the plan for the rest of the suite is in [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Sample applications
 

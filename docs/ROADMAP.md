@@ -26,7 +26,7 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 - [x] Hand-label 20 reports and record how often the judge agrees (18/20; judge and human each right on one disagreement)
 - [x] Prompt injection set: 8 attacks in documents and form fields; status never changes (tested in CI)
 - [x] Injection, judge part: `injection_judged` suite tells a report that *describes* an attack from one that *follows* it; 24/24, including the 5 reports the keywords flagged
-- [ ] Manual GitHub Actions workflow for the suites that call the LLM
+- [x] Manual GitHub Actions workflow for the suites that call the LLM (`judged-evals.yml`: Run workflow, pick a suite, optional saved results to re-grade)
 - [x] Fix the Review Agent prompt for the failures found (risk bands, ~1% gaps); false alarms 26/30 and 27/30 before, 28/30 after, both remaining flags read by hand
 
 ## Phase 2: Extraction dataset and baselines
