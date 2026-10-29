@@ -28,8 +28,10 @@ OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "extraction")
 FIELDS = {
     "pay_stub": ["employer_name", "gross_monthly_income"],
     "bank_statement": ["average_monthly_balance", "monthly_deposits"],
+    "credit_report": ["credit_score", "existing_monthly_debt", "payment_history"],
+    "id_document": ["name", "date_of_birth", "id_status"],
 }
-DOC_PREFIX = {"pay_stub": "PS", "bank_statement": "BS"}
+DOC_PREFIX = {"pay_stub": "PS", "bank_statement": "BS", "credit_report": "CR", "id_document": "ID"}
 MISSING_RATE = 0.10  # share of documents that leave one field out
 
 FIRST = ["Jordan", "Morgan", "Casey", "Riley", "Avery", "Drew", "Sam", "Taylor", "Jamie",
@@ -43,6 +45,12 @@ ORG_B = ["Logistics", "Manufacturing", "Retail", "Health Partners", "Freight", "
 ORG_C = ["Inc.", "LLC", "Co.", "Corp.", "Group", ""]
 BANKS = ["First Harbor Bank", "Prairie Federal Credit Union", "Lakeside Savings", "Union Trust Bank",
          "Copperline Bank", "Meridian Community Bank", "Westgate Financial"]
+BUREAUS = ["Equifax", "Experian", "TransUnion"]
+HISTORIES = ["No late payments in 24 months", "No late payments in 12 months",
+             "1 payment 30+ days late in last 12 months", "2 payments 30+ days late in last 12 months",
+             "1 payment 60+ days late in last 24 months", "3 payments 30+ days late in last 24 months"]
+CREDITORS = ["Auto loan", "Student loan", "Credit card", "Personal loan", "Store card", "Mortgage"]
+STATES = ["Ohio", "Texas", "Oregon", "Georgia", "Arizona", "Michigan", "Colorado", "Virginia"]
 ROLES = ["Operations Associate", "Analyst", "Technician", "Account Manager", "Nurse",
          "Warehouse Lead", "Engineer", "Sales Representative"]
 
@@ -449,13 +457,316 @@ def bs_letter(p, t, x, rng):
     p.text("Branch Operations", step=17)
 
 
+# ---------- credit report ----------
+
+def sample_credit_report(rng: random.Random) -> tuple[dict, dict]:
+    score = rng.randint(520, 820)
+    debt_c = rng.randrange(5_000, 350_000)
+    n_acct = rng.randint(2, 4)
+    truth = {
+        "credit_score": score,
+        "existing_monthly_debt": debt_c / 100,
+        "payment_history": rng.choice(HISTORIES),
+    }
+    accounts = [(rng.choice(CREDITORS), amt, round(amt * rng.uniform(8, 60), 2))
+                for amt in _split(debt_c, n_acct, rng)]
+    extra = {
+        "person": f"{rng.choice(FIRST)} {rng.choice(LAST)}",
+        "bureau": rng.choice(BUREAUS),
+        "report_date": date(2026, rng.randint(1, 12), rng.randint(1, 28)),
+        "accounts": accounts,  # (type, monthly payment, balance); payments sum to the debt
+        "total_balance": round(sum(a[2] for a in accounts), 2),
+        "utilization": rng.randint(4, 85),
+        "inquiries": rng.randint(0, 6),
+        # other bureaus' scores and past scores are distractors; the true score is the middle one
+        "other_scores": sorted([score - rng.randint(1, 25), score + rng.randint(1, 25)]),
+        "past_scores": [score + rng.randint(-40, 40) for _ in range(3)],
+    }
+    return truth, extra
+
+
+def cr_legacy(p, t, x, rng):
+    # the original generator's format, which the regex parser was written for
+    p.text("Synthetic Credit Report", size=14, bold=True, step=30)
+    p.text(f"Name: {x['person']}", step=20)
+    if t["credit_score"] is not None:
+        p.text(f"Credit Score: {t['credit_score']}", step=20)
+    if t["existing_monthly_debt"] is not None:
+        p.text(f"Existing Monthly Debt Payments: {money(t['existing_monthly_debt'], 'us')}", step=20)
+    if t["payment_history"]:
+        p.text(f"Payment History: {t['payment_history']}", step=20)
+
+
+def cr_bureau(p, t, x, rng):
+    # score box with the 300-850 range and utilization as distractor numbers
+    p.text(f"{x['bureau']} Consumer Credit File", size=14, bold=True, step=20)
+    p.text(f"Consumer: {x['person']}    Report date: {fmt_date(x['report_date'], 'us')}", size=10, step=26)
+    if t["credit_score"] is not None:
+        p.text(f"FICO Score 8: {t['credit_score']}  (range 300-850)", size=13, bold=True, step=22)
+    p.text(f"Revolving utilization: {x['utilization']}%    Hard inquiries (12 mo): {x['inquiries']}", size=10, step=20)
+    if t["existing_monthly_debt"] is not None:
+        p.text(f"Total scheduled monthly payments: {money(t['existing_monthly_debt'], 'us')}", size=10, step=20)
+    p.text(f"Total balances: {money(x['total_balance'], 'us')}", size=10, step=20)
+    if t["payment_history"]:
+        p.text(f"Delinquency summary: {t['payment_history']}", size=10, step=20)
+
+
+def cr_tradelines(p, t, x, rng):
+    # account table; the true debt is the total row, the per-account payments and balances are distractors
+    p.text("Credit Report - Account Detail", size=13, bold=True, step=20)
+    p.text(f"{x['person']}  |  Source: {x['bureau']}", size=10, step=14)
+    if t["credit_score"] is not None:
+        p.text(f"Score: {t['credit_score']}", size=10, step=24)
+    xs = (72, 230, 360, 460)
+    p.row(["Account", "Balance", "Monthly Payment", "Status"], xs=xs, bold=True)
+    p.rule()
+    for kind, pay, bal in x["accounts"]:
+        p.row([kind, money(bal, "us"), money(pay, "us"), "Open"], xs=xs, size=9, step=14)
+    p.rule()
+    if t["existing_monthly_debt"] is not None:
+        p.row(["Total", money(x["total_balance"], "us"), money(t["existing_monthly_debt"], "us"), ""], xs=xs, bold=True)
+    p.gap(10)
+    if t["payment_history"]:
+        p.text(f"Payment record: {t['payment_history']}", size=10)
+
+
+def cr_stacked(p, t, x, rng):
+    m = rng.choice(["us", "no_cents"])
+    p.text("Your Credit at a Glance", size=16, bold=True, step=30)
+    for label, value in [
+        ("Name", x["person"]),
+        ("Credit score", str(t["credit_score"]) if t["credit_score"] is not None else None),
+        ("Score change since last report", f"{t['credit_score'] - x['past_scores'][-1]:+d}" if t["credit_score"] else None),
+        ("Monthly debt obligations",
+         money(t["existing_monthly_debt"], m) if t["existing_monthly_debt"] is not None else None),
+        ("Open accounts", str(len(x["accounts"]))),
+        ("On-time payments", t["payment_history"]),
+    ]:
+        if value is None:
+            continue
+        p.text(label, size=9, bold=True, step=13)
+        p.text(value, size=12, step=22)
+
+
+def cr_tri_merge(p, t, x, rng):
+    # three bureau scores; lenders use the middle one, which is the label
+    p.text("Tri-Merge Credit Report", size=14, bold=True, step=22)
+    p.text(f"Borrower: {x['person']}   Date: {fmt_date(x['report_date'], 'short')}", size=10, step=24)
+    if t["credit_score"] is not None:
+        scores = [x["other_scores"][0], t["credit_score"], x["other_scores"][1]]
+        order = BUREAUS[:]
+        rng.shuffle(order)
+        shown = dict(zip(order, rng.sample(scores, 3)))
+        p.row(["Bureau", "Score"], xs=(72, 250), bold=True)
+        p.rule()
+        for b in BUREAUS:
+            p.row([b, str(shown[b])], xs=(72, 250))
+        p.row(["Representative (middle) score", str(t["credit_score"])], xs=(72, 250), bold=True)
+        p.gap(8)
+    if t["existing_monthly_debt"] is not None:
+        p.text(f"Monthly liabilities: {money(t['existing_monthly_debt'], 'usd')}", size=10)
+    if t["payment_history"]:
+        p.text(f"Late payment history: {t['payment_history']}", size=10)
+
+
+def cr_codes(p, t, x, rng):
+    p.text("CR SUMMARY", size=13, bold=True, step=22)
+    p.text(f"SUBJ: {x['person'].upper()}   SRC: {x['bureau'].upper()}   DT: {fmt_date(x['report_date'], 'iso')}", size=10, step=24)
+    xs = (72, 220)
+    for code, v in [("SCR", t["credit_score"]), ("UTIL", f"{x['utilization']}%"), ("INQ", x["inquiries"]),
+                    ("TOT BAL", money(x["total_balance"], "plain")),
+                    ("MO PMT", money(t["existing_monthly_debt"], "plain") if t["existing_monthly_debt"] is not None else None),
+                    ("DELQ", t["payment_history"])]:
+        if v is not None:
+            p.row([code, str(v)], xs=xs)
+
+
+def cr_letter(p, t, x, rng):
+    p.text("Credit Review Summary", size=14, bold=True, step=30)
+    p.text(fmt_date(x["report_date"], "long"), size=10, step=24)
+    lines = [f"We reviewed the {x['bureau']} credit file for {x['person']}."]
+    if t["credit_score"] is not None:
+        lines.append(f"The applicant's current credit score is {t['credit_score']} on a 300 to 850 scale.")
+    if t["existing_monthly_debt"] is not None:
+        lines += [f"Existing obligations require {money(t['existing_monthly_debt'], 'us')} per month across",
+                  f"{len(x['accounts'])} open accounts with combined balances of {money(x['total_balance'], 'us')}."]
+    if t["payment_history"]:
+        lines.append(f"Payment history: {t['payment_history'].lower()}.")
+    for s in lines:
+        p.text(s, size=10, step=17)
+    p.gap(14)
+    p.text("Underwriting Support", step=17)
+
+
+def cr_score_trend(p, t, x, rng):
+    # score history; only the most recent row is the label
+    p.text("Credit Monitoring Report", size=14, bold=True, step=22)
+    p.text(f"Member: {x['person']}", size=10, step=24)
+    xs = (72, 250)
+    p.row(["Date", "Score"], xs=xs, bold=True)
+    p.rule()
+    for k, past in enumerate(x["past_scores"]):
+        p.row([fmt_date(x["report_date"] - timedelta(days=90 * (3 - k)), "us"), str(past)], xs=xs)
+    if t["credit_score"] is not None:
+        p.row([f"{fmt_date(x['report_date'], 'us')} (current)", str(t["credit_score"])], xs=xs, bold=True)
+    p.gap(10)
+    if t["existing_monthly_debt"] is not None:
+        p.text(f"Minimum payments due monthly: {money(t['existing_monthly_debt'], 'us')}", size=10)
+    if t["payment_history"]:
+        p.text(f"History: {t['payment_history']}", size=10)
+
+
+# ---------- ID document ----------
+
+def sample_id_document(rng: random.Random) -> tuple[dict, dict]:
+    dob = date(rng.randint(1955, 2004), rng.randint(1, 12), rng.randint(1, 28))
+    issued = date(rng.randint(2019, 2025), rng.randint(1, 12), rng.randint(1, 28))
+    truth = {
+        "name": f"{rng.choice(FIRST)} {rng.choice(LAST)}",
+        "date_of_birth": dob.isoformat(),
+        "id_status": "verified" if rng.random() < 0.85 else "not_verified",
+    }
+    extra = {
+        "dob": dob,
+        "issued": issued,
+        "expires": issued.replace(year=issued.year + 8),
+        "checked": date(2026, rng.randint(1, 12), rng.randint(1, 28)),
+        "number": f"{rng.choice('ABDKMSW')}{rng.randint(10_000_000, 99_999_999)}",
+        "state": rng.choice(STATES),
+        "address": f"{rng.randint(10, 9899)} {rng.choice(['Oak', 'Maple', 'Cedar', 'Lake', 'Hill'])} "
+                   f"{rng.choice(['St', 'Ave', 'Rd', 'Dr'])}",
+        "agent": f"{rng.choice(FIRST)} {rng.choice(LAST)}",
+    }
+    return truth, extra
+
+
+def status_text(status: str, style: str) -> str:
+    words = "Verified" if status == "verified" else "Not Verified"
+    return {"title": words, "upper": words.upper(), "lower": words.lower()}[style]
+
+
+def id_legacy(p, t, x, rng):
+    # the original generator's format, which the regex parser was written for
+    p.text("Synthetic ID Document", size=14, bold=True, step=30)
+    if t["name"]:
+        p.text(f"Name: {t['name']}", step=20)
+    if t["date_of_birth"]:
+        p.text(f"Date of Birth: {t['date_of_birth']}", step=20)
+    if t["id_status"]:
+        p.text(f"ID Status: {t['id_status']}", step=20)
+
+
+def id_license(p, t, x, rng):
+    # driver license card; issue and expiry dates are distractors next to the DOB
+    p.text(f"{x['state'].upper()} DRIVER LICENSE", size=14, bold=True, step=24)
+    p.text(f"DL {x['number']}", size=10, step=18)
+    if t["name"]:
+        p.text(t["name"].upper(), size=12, bold=True, step=16)
+    p.text(f"{x['address']}, {x['state']}", size=10, step=20)
+    if t["date_of_birth"]:
+        p.text(f"DOB {fmt_date(x['dob'], 'us')}", size=10, step=14)
+    p.text(f"ISS {fmt_date(x['issued'], 'us')}    EXP {fmt_date(x['expires'], 'us')}", size=10, step=24)
+    if t["id_status"]:
+        p.text(f"Document check: {status_text(t['id_status'], 'upper')}", size=10)
+
+
+def id_passport(p, t, x, rng):
+    p.text("PASSPORT DATA PAGE", size=14, bold=True, step=24)
+    for label, value in [
+        ("Passport No.", x["number"]),
+        ("Full name", t["name"]),
+        ("Date of birth", fmt_date(x["dob"], "short") if t["date_of_birth"] else None),
+        ("Date of issue", fmt_date(x["issued"], "short")),
+        ("Date of expiry", fmt_date(x["expires"], "short")),
+        ("Authenticity", status_text(t["id_status"], "title") if t["id_status"] else None),
+    ]:
+        if value is not None:
+            p.row([label, value], xs=(72, 230))
+
+
+def id_kyc_report(p, t, x, rng):
+    # identity verification vendor result
+    p.text("Identity Verification Result", size=14, bold=True, step=22)
+    p.text(f"Check run {fmt_date(x['checked'], 'iso')} by {x['agent']}", size=10, step=24)
+    xs = (72, 250)
+    p.row(["Check", "Result"], xs=xs, bold=True)
+    p.rule()
+    if t["name"]:
+        p.row(["Subject name", t["name"]], xs=xs)
+    if t["date_of_birth"]:
+        p.row(["Subject DOB", t["date_of_birth"]], xs=xs)
+    p.row(["Document number", x["number"]], xs=xs)
+    p.row(["Document expiry", fmt_date(x["expires"], "iso")], xs=xs)
+    if t["id_status"]:
+        p.row(["Overall status", status_text(t["id_status"], "upper")], xs=xs, bold=True)
+
+
+def id_stacked(p, t, x, rng):
+    p.text("Identity Card", size=16, bold=True, step=30)
+    for label, value in [
+        ("Holder", t["name"]),
+        ("Born", fmt_date(x["dob"], "long") if t["date_of_birth"] else None),
+        ("Issued", fmt_date(x["issued"], "long")),
+        ("Valid until", fmt_date(x["expires"], "long")),
+        ("Verification", status_text(t["id_status"], "title") if t["id_status"] else None),
+    ]:
+        if value is None:
+            continue
+        p.text(label, size=9, bold=True, step=13)
+        p.text(value, size=12, step=22)
+
+
+def id_european(p, t, x, rng):
+    # day-first dates
+    p.text("National Identity Document", size=14, bold=True, step=26)
+    if t["name"]:
+        p.text(f"Surname and given names: {t['name']}")
+    if t["date_of_birth"]:
+        p.text(f"Date of birth (DD.MM.YYYY): {x['dob'].strftime('%d.%m.%Y')}")
+    p.text(f"Expiry (DD.MM.YYYY): {x['expires'].strftime('%d.%m.%Y')}")
+    p.text(f"Document no.: {x['number']}")
+    if t["id_status"]:
+        p.text(f"Status: {status_text(t['id_status'], 'lower')}")
+
+
+def id_codes(p, t, x, rng):
+    p.text("IDV RECORD", size=13, bold=True, step=22)
+    xs = (72, 200)
+    for code, v in [("NM", t["name"].upper() if t["name"] else None),
+                    ("DOB", x["dob"].strftime("%Y%m%d") if t["date_of_birth"] else None),
+                    ("DOCNO", x["number"]), ("ISS", x["issued"].strftime("%Y%m%d")),
+                    ("EXP", x["expires"].strftime("%Y%m%d")),
+                    ("STAT", status_text(t["id_status"], "upper").replace(" ", "_") if t["id_status"] else None)]:
+        if v is not None:
+            p.row([code, v], xs=xs)
+
+
+def id_letter(p, t, x, rng):
+    p.text("Identity Verification Memo", size=14, bold=True, step=30)
+    p.text(fmt_date(x["checked"], "long"), size=10, step=24)
+    who = t["name"] or "the applicant"
+    lines = [f"Reviewer {x['agent']} examined the identity document presented by {who}."]
+    if t["date_of_birth"]:
+        lines.append(f"The document shows a date of birth of {fmt_date(x['dob'], 'long')}.")
+    lines.append(f"It was issued on {fmt_date(x['issued'], 'long')} and expires on {fmt_date(x['expires'], 'long')}.")
+    if t["id_status"]:
+        lines.append(f"Result: the document is {status_text(t['id_status'], 'lower')}.")
+    for s in lines:
+        p.text(s, size=10, step=17)
+
+
 LAYOUTS = {
     "pay_stub": [ps_legacy, ps_key_value, ps_ytd_table, ps_stacked,
                  ps_letterhead, ps_letter, ps_hours_rate, ps_european],
     "bank_statement": [bs_legacy, bs_summary, bs_transactions, bs_multi_month,
                        bs_stacked, bs_european, bs_codes, bs_letter],
+    "credit_report": [cr_legacy, cr_bureau, cr_tradelines, cr_stacked,
+                      cr_tri_merge, cr_codes, cr_letter, cr_score_trend],
+    "id_document": [id_legacy, id_license, id_passport, id_kyc_report,
+                    id_stacked, id_european, id_codes, id_letter],
 }
-SAMPLERS = {"pay_stub": sample_pay_stub, "bank_statement": sample_bank_statement}
+SAMPLERS = {"pay_stub": sample_pay_stub, "bank_statement": sample_bank_statement,
+            "credit_report": sample_credit_report, "id_document": sample_id_document}
 
 
 # ---------- driver ----------
