@@ -8,8 +8,8 @@ layout, so the labels are exact by construction. Layouts vary the labels,
 structure, number and date formats, add distractor values (YTD totals,
 net pay, annual salary) and sometimes leave a field out (label: null).
 
-The same seed always gives the same dataset, so only this script and
-labels.jsonl are committed, not the PDFs.
+The same seed always gives the same dataset, so only this script,
+labels.jsonl and one sample PDF per layout (samples/) are committed.
 
     python scripts/generate_extraction_dataset.py [--seed 7] [--per-type 375]
 """
@@ -17,6 +17,7 @@ import argparse
 import json
 import os
 import random
+import shutil
 from datetime import date, timedelta
 
 from reportlab.lib.pagesizes import letter
@@ -83,7 +84,7 @@ class Page:
     """A one-page PDF with a moving cursor."""
 
     def __init__(self, path: str):
-        self.c = canvas.Canvas(path, pagesize=letter)
+        self.c = canvas.Canvas(path, pagesize=letter, invariant=1)  # same seed, same bytes
         self.y = letter[1] - 72
 
     def text(self, s: str, x: float = 72, size: int = 11, bold: bool = False, step: int = 18):
@@ -801,6 +802,14 @@ def main():
     with open(os.path.join(args.out, "labels.jsonl"), "w") as f:
         for row in rows:
             f.write(json.dumps(row) + "\n")
+    # the first document of each layout, kept in git so the layouts can be seen without a run
+    os.makedirs(os.path.join(args.out, "samples"), exist_ok=True)
+    seen = set()
+    for row in rows:
+        if row["layout"] not in seen:
+            seen.add(row["layout"])
+            shutil.copy(os.path.join(args.out, row["file"]),
+                        os.path.join(args.out, "samples", f"{row['layout']}.pdf"))
     print(f"Wrote {len(rows)} documents to {os.path.normpath(args.out)}")
 
 

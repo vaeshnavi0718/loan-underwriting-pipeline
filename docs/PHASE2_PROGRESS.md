@@ -9,7 +9,7 @@ Script: `scripts/generate_extraction_dataset.py`. Output: `data/extraction/docs/
 - [x] 1a. Skeleton, label format, 8 pay stub layouts
 - [x] 1b. Bank statement layouts (average_monthly_balance, monthly_deposits)
 - [x] 1c. Credit report (credit_score, existing_monthly_debt, payment_history) and ID (name, date_of_birth, id_status) layouts
-- [ ] 1d. Tests (each true value appears in pdfplumber text), 1 sample PDF per layout committed, full 1,500-doc run, PR
+- [x] 1d. Tests (each true value appears in pdfplumber text), 1 sample PDF per layout committed, full 1,500-doc run, PR
 
 ## Decisions
 
@@ -26,3 +26,7 @@ Script: `scripts/generate_extraction_dataset.py`. Output: `data/extraction/docs/
 - `payment_history` comes from a fixed list of 6 phrases (same style as the existing apps) and is printed word for word, except that `cr_letter` lowercases it.
 - `cr_tri_merge` shows three bureau scores; the label is the printed middle score. `cr_score_trend` shows past scores; the label is the current row. `cr_tradelines` has per-account payments that sum to the labeled total.
 - Checked on a 160-doc sample: every true credit and ID value appears in the pdfplumber text (after the normalization above), and the regex parser matches only `cr_legacy` and `id_legacy` (5/5 each).
+- PDFs are written with ReportLab's `invariant=1`, so the same seed gives byte-identical files and the committed samples only change when a layout does.
+- Full run: 1,500 documents (375 per type, 46 or 47 per layout) in under a second; 142 have a missing field. `tests/test_extraction_dataset.py` (no LLM, ~1 s) regenerates 96 documents and checks printed values, balance, nulls and that they match the committed labels.
+
+## Next: Task 2, the layout split (train layouts vs never-seen test layouts)

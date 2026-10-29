@@ -33,7 +33,7 @@ The Review Agent is the only agent that calls an LLM. Each synthetic application
 
 The Document Agent's regex parser matches the fixed labels the generator writes, so it looks perfect on today's data. A fair test needs documents that vary.
 
-- [ ] Generator for about 1,500 documents across about 8 layouts per document type (different labels, tables, number formats, distractor values like YTD totals)
+- [x] Generator for about 1,500 documents across about 8 layouts per document type (different labels, tables, number formats, distractor values like YTD totals)
 - [ ] Split by layout: train on some layouts, test only on layouts never seen in training
 - [ ] Extraction suite: field accuracy, correct handling of missing fields, valid JSON, cost and latency per document
 - [ ] Baselines: regex parser, and a large model via Groq prompted for JSON
