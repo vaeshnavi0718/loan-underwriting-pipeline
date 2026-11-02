@@ -220,6 +220,15 @@ def load_split(split: str, data_dir: str = DATA_DIR) -> list[dict]:
     return [r for r in rows if splits[r["doc_id"]] == split]
 
 
+def spread(rows: list[dict]) -> list[dict]:
+    """Rows interleaved across layouts, so the first N cover every layout evenly."""
+    by_layout = defaultdict(list)
+    for row in rows:
+        by_layout[row["layout"]].append(row)
+    groups = [by_layout[k] for k in sorted(by_layout)]
+    return [g[i] for i in range(max(map(len, groups))) for g in groups if i < len(g)]
+
+
 def run_document(extractor, row: dict, data_dir: str = DATA_DIR) -> dict:
     text = extract_text(os.path.join(data_dir, row["file"]))
     start = time.perf_counter()
@@ -278,13 +287,15 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Score a field extractor on the extraction dataset.")
     parser.add_argument("--extractor", choices=sorted(EXTRACTORS), required=True)
     parser.add_argument("--split", choices=SPLITS, default="test_unseen")
-    parser.add_argument("--limit", type=int, help="only the first N documents (a cheap trial run)")
+    parser.add_argument("--limit", type=int, help="only N documents, spread evenly across layouts (a cheap trial run)")
     args = parser.parse_args()
 
     if not os.path.isdir(os.path.join(DATA_DIR, "docs")):
         print("No PDFs yet: run python scripts/generate_extraction_dataset.py first.")
         return 2
-    rows = load_split(args.split)[:args.limit]
+    rows = load_split(args.split)
+    if args.limit:
+        rows = spread(rows)[:args.limit]
     complete = True
     if args.extractor == "groq":
         if not os.environ.get("GROQ_API_KEY"):

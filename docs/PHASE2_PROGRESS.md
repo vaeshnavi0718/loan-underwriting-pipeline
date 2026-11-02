@@ -57,3 +57,13 @@ Module: `evals/extraction.py` (`python -m evals.extraction --extractor regex --s
 - Output that isn't a JSON object counts as invalid JSON, and every present field in it is scored as missed.
 - An extractor returns (output, usage); usage carries tokens and cost, so the Groq baseline can report cost per document.
 - Regex (2026-11-02), present fields correct: train 401/2,415, val_seen 50/288, test_unseen 0/905. It never returned a wrong value or a hallucinated one; it only finds the original layouts (100% there). Overall field accuracy on test_unseen is 3.7%, and all of that is correct nulls, which is what an extractor that always says null would score. So present-field accuracy is the better headline.
+
+## Task 4: baselines (branch `phase-2-llm-baseline`)
+
+`--extractor groq` asks `openai/gpt-oss-120b` (temperature 0, JSON mode) for the fields; answers are cached in `evals/.extraction_cache.json` (gitignored) with their latency and tokens. `--limit N` spreads N documents evenly across layouts.
+
+- [x] 4a. Groq extractor, cache, fake-model tests, 16-doc trial on test_unseen
+- [ ] 4b. Full test_unseen run (~178k tokens at the measured rate), then val_seen
+- [ ] 4c. Results in RESULTS.md and the handbook, PR
+
+Trial (2026-11-02, 16 docs, 2 per held-out layout): present fields 38/40, valid JSON 16/16, 680 ms and 472 tokens per doc on average. Both misses are `cr_tri_merge` payment_history with the printed label copied into the value ("Late payment history: 1 payment…"); the content is right. Left as wrong: the grader isn't loosened after seeing results.

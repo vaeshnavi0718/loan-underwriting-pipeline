@@ -1,0 +1,444 @@
+{
+  "suite": "extraction",
+  "extractor": "groq",
+  "split": "test_unseen",
+  "model": "openai/gpt-oss-120b",
+  "limit": 16,
+  "complete": true,
+  "summary": {
+    "documents": 16,
+    "field_accuracy": 0.95,
+    "present_fields": {
+      "total": 40,
+      "correct": 38,
+      "wrong": 2,
+      "missed": 0
+    },
+    "absent_fields": {
+      "total": 0,
+      "correct_null": 0,
+      "hallucinated": 0
+    },
+    "documents_all_correct": 14,
+    "valid_json": 16,
+    "call_errors": 0,
+    "mean_latency_s": 0.6799,
+    "mean_tokens": 472.2,
+    "total_tokens": 7555,
+    "total_cost_usd": null,
+    "by_field": {
+      "bank_statement.average_monthly_balance": {
+        "correct": 4,
+        "total": 4
+      },
+      "bank_statement.monthly_deposits": {
+        "correct": 4,
+        "total": 4
+      },
+      "credit_report.credit_score": {
+        "correct": 4,
+        "total": 4
+      },
+      "credit_report.existing_monthly_debt": {
+        "correct": 4,
+        "total": 4
+      },
+      "credit_report.payment_history": {
+        "correct": 2,
+        "total": 4
+      },
+      "id_document.date_of_birth": {
+        "correct": 4,
+        "total": 4
+      },
+      "id_document.id_status": {
+        "correct": 4,
+        "total": 4
+      },
+      "id_document.name": {
+        "correct": 4,
+        "total": 4
+      },
+      "pay_stub.employer_name": {
+        "correct": 4,
+        "total": 4
+      },
+      "pay_stub.gross_monthly_income": {
+        "correct": 4,
+        "total": 4
+      }
+    },
+    "by_layout": {
+      "bs_stacked": {
+        "correct": 4,
+        "total": 4
+      },
+      "bs_transactions": {
+        "correct": 4,
+        "total": 4
+      },
+      "cr_letter": {
+        "correct": 6,
+        "total": 6
+      },
+      "cr_tri_merge": {
+        "correct": 4,
+        "total": 6
+      },
+      "id_european": {
+        "correct": 6,
+        "total": 6
+      },
+      "id_license": {
+        "correct": 6,
+        "total": 6
+      },
+      "ps_hours_rate": {
+        "correct": 4,
+        "total": 4
+      },
+      "ps_letter": {
+        "correct": 4,
+        "total": 4
+      }
+    }
+  },
+  "documents": [
+    {
+      "doc_id": "BS-0004",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": 32101.33,
+        "monthly_deposits": 11683.43
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct",
+        "monthly_deposits": "correct"
+      },
+      "latency_s": 0.8788,
+      "usage": {
+        "input_tokens": 279,
+        "output_tokens": 152,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "BS-0002",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": 13078.8,
+        "monthly_deposits": 10470.6
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct",
+        "monthly_deposits": "correct"
+      },
+      "latency_s": 0.7152,
+      "usage": {
+        "input_tokens": 441,
+        "output_tokens": 227,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "CR-0006",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": 544,
+        "existing_monthly_debt": 2286.23,
+        "payment_history": "1 payment 30+ days late in last 12 months."
+      },
+      "outcomes": {
+        "credit_score": "correct",
+        "existing_monthly_debt": "correct",
+        "payment_history": "correct"
+      },
+      "latency_s": 0.6647,
+      "usage": {
+        "input_tokens": 300,
+        "output_tokens": 203,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "CR-0004",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": 793,
+        "existing_monthly_debt": 195.25,
+        "payment_history": "Late payment history: 1 payment 30+ days late in last 12 months"
+      },
+      "outcomes": {
+        "credit_score": "correct",
+        "existing_monthly_debt": "correct",
+        "payment_history": "wrong"
+      },
+      "latency_s": 0.9446,
+      "usage": {
+        "input_tokens": 285,
+        "output_tokens": 247,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "ID-0005",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": "Casey Patel",
+        "date_of_birth": "1990-12-13",
+        "id_status": "verified"
+      },
+      "outcomes": {
+        "name": "correct",
+        "date_of_birth": "correct",
+        "id_status": "correct"
+      },
+      "latency_s": 0.5307,
+      "usage": {
+        "input_tokens": 262,
+        "output_tokens": 142,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "ID-0001",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": "BLAKE KIM",
+        "date_of_birth": "2000-11-10",
+        "id_status": "verified"
+      },
+      "outcomes": {
+        "name": "correct",
+        "date_of_birth": "correct",
+        "id_status": "correct"
+      },
+      "latency_s": 0.4755,
+      "usage": {
+        "input_tokens": 262,
+        "output_tokens": 152,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "PS-0006",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": "EVERGREEN HEALTH PARTNERS CO.",
+        "gross_monthly_income": 7208.33
+      },
+      "outcomes": {
+        "employer_name": "correct",
+        "gross_monthly_income": "correct"
+      },
+      "latency_s": 0.5163,
+      "usage": {
+        "input_tokens": 287,
+        "output_tokens": 146,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "PS-0005",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": "Fieldstone Logistics Corp.",
+        "gross_monthly_income": 9625.0
+      },
+      "outcomes": {
+        "employer_name": "correct",
+        "gross_monthly_income": "correct"
+      },
+      "latency_s": 0.8066,
+      "usage": {
+        "input_tokens": 281,
+        "output_tokens": 194,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "BS-0012",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": 15949.5,
+        "monthly_deposits": 4246.78
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct",
+        "monthly_deposits": "correct"
+      },
+      "latency_s": 0.6526,
+      "usage": {
+        "input_tokens": 280,
+        "output_tokens": 215,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "BS-0010",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": 28996.69,
+        "monthly_deposits": 1697.84
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct",
+        "monthly_deposits": "correct"
+      },
+      "latency_s": 0.7325,
+      "usage": {
+        "input_tokens": 398,
+        "output_tokens": 165,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "CR-0014",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": 738,
+        "existing_monthly_debt": 2097.92,
+        "payment_history": "2 payments 30+ days late in last 12 months."
+      },
+      "outcomes": {
+        "credit_score": "correct",
+        "existing_monthly_debt": "correct",
+        "payment_history": "correct"
+      },
+      "latency_s": 0.6282,
+      "usage": {
+        "input_tokens": 300,
+        "output_tokens": 178,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "CR-0012",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": 775,
+        "existing_monthly_debt": 2272.94,
+        "payment_history": "Late payment history: 2 payments 30+ days late in last 12 months"
+      },
+      "outcomes": {
+        "credit_score": "correct",
+        "existing_monthly_debt": "correct",
+        "payment_history": "wrong"
+      },
+      "latency_s": 0.9756,
+      "usage": {
+        "input_tokens": 287,
+        "output_tokens": 286,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "ID-0013",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": "Jordan Ellis",
+        "date_of_birth": "1995-04-13",
+        "id_status": "verified"
+      },
+      "outcomes": {
+        "name": "correct",
+        "date_of_birth": "correct",
+        "id_status": "correct"
+      },
+      "latency_s": 0.6379,
+      "usage": {
+        "input_tokens": 262,
+        "output_tokens": 123,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "ID-0009",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": "MORGAN SANDERS",
+        "date_of_birth": "1963-02-28",
+        "id_status": "verified"
+      },
+      "outcomes": {
+        "name": "correct",
+        "date_of_birth": "correct",
+        "id_status": "correct"
+      },
+      "latency_s": 0.5528,
+      "usage": {
+        "input_tokens": 262,
+        "output_tokens": 162,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "PS-0014",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": "HARBORLINE ENERGY GROUP",
+        "gross_monthly_income": 12312.5
+      },
+      "outcomes": {
+        "employer_name": "correct",
+        "gross_monthly_income": "correct"
+      },
+      "latency_s": 0.7026,
+      "usage": {
+        "input_tokens": 289,
+        "output_tokens": 101,
+        "cost_usd": null
+      }
+    },
+    {
+      "doc_id": "PS-0013",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": "Granite Consulting Corp.",
+        "gross_monthly_income": 7479.17
+      },
+      "outcomes": {
+        "employer_name": "correct",
+        "gross_monthly_income": "correct"
+      },
+      "latency_s": 0.4639,
+      "usage": {
+        "input_tokens": 279,
+        "output_tokens": 108,
+        "cost_usd": null
+      }
+    }
+  ]
+}
