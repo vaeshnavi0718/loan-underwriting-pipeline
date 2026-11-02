@@ -69,3 +69,31 @@ def test_regex_on_the_committed_samples():
             assert "correct" not in present, d
     summary = summarize(docs)
     assert summary["documents"] == 32 and summary["valid_json"] == 32
+
+
+def test_groq_extractor_caches_answers_with_their_usage():
+    from evals.extraction import groq_extractor
+
+    calls = []
+
+    def fake_call(system, user):
+        calls.append(user)
+        return '{"credit_score": 712}', {"input_tokens": 300, "output_tokens": 20}
+
+    cache = {}
+    out1, usage1 = groq_extractor("Credit Score: 712", "credit_report", ["credit_score"], fake_call, cache)
+    out2, usage2 = groq_extractor("Credit Score: 712", "credit_report", ["credit_score"], fake_call, cache)
+    assert len(calls) == 1 and out1 == out2 == '{"credit_score": 712}'
+    assert usage2["cached"] and usage2["input_tokens"] == 300
+    assert "credit_score: the applicant's credit score" in calls[0]
+
+
+def test_groq_extractor_failed_call_is_scored_not_cached():
+    from evals.extraction import groq_extractor
+
+    def broken(system, user):
+        raise RuntimeError("500 from the API")
+
+    cache = {}
+    out, usage = groq_extractor("text", "pay_stub", ["employer_name"], broken, cache)
+    assert out is None and "500" in usage["error"] and cache == {}

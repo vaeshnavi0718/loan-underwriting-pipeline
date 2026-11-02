@@ -14,3 +14,5 @@ evals/.judge_cache.json
 
 # Phase 2 extraction PDFs, regenerated from the seed
 data/extraction/docs/
+# Extraction suite model answers, cached locally
+evals/.extraction_cache.json
