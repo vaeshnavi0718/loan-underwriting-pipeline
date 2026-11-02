@@ -11,3 +11,6 @@ logs/*.log
 
 # LLM judge answers, cached locally
 evals/.judge_cache.json
+
+# Phase 2 extraction PDFs, regenerated from the seed
+data/extraction/docs/
