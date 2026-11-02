@@ -50,7 +50,7 @@ Splits: train 1,004 · val_seen 120 · test_unseen 376 (251 / 30 / 94 per docume
 Module: `evals/extraction.py` (`python -m evals.extraction --extractor regex --split test_unseen [--limit N]`). Results: `evals/results/*_extraction_<extractor>_<split>.json`.
 
 - [x] 3a. Scoring module, unit tests (`tests/test_extraction_suite.py`, no LLM), regex run on all 3 splits
-- [ ] 3b. Results in RESULTS.md and the handbook, PR
+- [x] 3b. Results in RESULTS.md and the handbook, PR
 
 - Each field is scored as correct, wrong, missed (null but present), hallucinated (a value for a field the document leaves out) or correct_null.
 - Comparison is semantic: money within half a cent, dates in any common format, text fields case- and whitespace-insensitive. A format mistake isn't counted as an extraction mistake.
