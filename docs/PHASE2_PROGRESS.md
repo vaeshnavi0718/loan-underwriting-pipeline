@@ -36,7 +36,7 @@ Script: `scripts/generate_extraction_dataset.py`. Output: `data/extraction/docs/
 Script: `scripts/split_extraction_dataset.py`. Output: `data/extraction/splits.json` (committed).
 
 - [x] 2a. Split script, splits.json, tests
-- [ ] 2b. Counts in the handbook, PR (after #15 is merged, rebase onto main)
+- [x] 2b. Counts in the handbook, PR
 
 Splits: train 1,004 · val_seen 120 · test_unseen 376 (251 / 30 / 94 per document type).
 
