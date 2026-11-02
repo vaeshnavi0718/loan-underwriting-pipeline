@@ -1,0 +1,6495 @@
+{
+  "suite": "extraction",
+  "extractor": "regex",
+  "split": "test_unseen",
+  "summary": {
+    "documents": 376,
+    "field_accuracy": 0.0372,
+    "present_fields": {
+      "total": 905,
+      "correct": 0,
+      "wrong": 0,
+      "missed": 905
+    },
+    "absent_fields": {
+      "total": 35,
+      "correct_null": 35,
+      "hallucinated": 0
+    },
+    "documents_all_correct": 0,
+    "valid_json": 376,
+    "mean_latency_s": 0.0,
+    "mean_tokens": null,
+    "total_cost_usd": null,
+    "by_field": {
+      "bank_statement.average_monthly_balance": {
+        "correct": 6,
+        "total": 94
+      },
+      "bank_statement.monthly_deposits": {
+        "correct": 7,
+        "total": 94
+      },
+      "credit_report.credit_score": {
+        "correct": 0,
+        "total": 94
+      },
+      "credit_report.existing_monthly_debt": {
+        "correct": 0,
+        "total": 94
+      },
+      "credit_report.payment_history": {
+        "correct": 3,
+        "total": 94
+      },
+      "id_document.date_of_birth": {
+        "correct": 4,
+        "total": 94
+      },
+      "id_document.id_status": {
+        "correct": 5,
+        "total": 94
+      },
+      "id_document.name": {
+        "correct": 1,
+        "total": 94
+      },
+      "pay_stub.employer_name": {
+        "correct": 3,
+        "total": 94
+      },
+      "pay_stub.gross_monthly_income": {
+        "correct": 6,
+        "total": 94
+      }
+    },
+    "by_layout": {
+      "bs_stacked": {
+        "correct": 4,
+        "total": 94
+      },
+      "bs_transactions": {
+        "correct": 9,
+        "total": 94
+      },
+      "cr_letter": {
+        "correct": 0,
+        "total": 141
+      },
+      "cr_tri_merge": {
+        "correct": 3,
+        "total": 141
+      },
+      "id_european": {
+        "correct": 4,
+        "total": 141
+      },
+      "id_license": {
+        "correct": 6,
+        "total": 141
+      },
+      "ps_hours_rate": {
+        "correct": 6,
+        "total": 94
+      },
+      "ps_letter": {
+        "correct": 3,
+        "total": 94
+      }
+    }
+  },
+  "documents": [
+    {
+      "doc_id": "PS-0005",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0001,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0006",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0013",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0014",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0021",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0022",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0029",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0030",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0037",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0038",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0045",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0046",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0053",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0054",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0061",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0062",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0069",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0070",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0077",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0078",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0085",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0086",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0093",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0094",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0101",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0102",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0109",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0110",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0117",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0118",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "correct_null",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0125",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0126",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0133",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0134",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0141",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0142",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0149",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0150",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0157",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0158",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0165",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0166",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0173",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0174",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0181",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0182",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0189",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0190",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0197",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0198",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0205",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0206",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0213",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0214",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0221",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0222",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0229",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "correct_null",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0230",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0237",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0238",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0245",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0246",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0253",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0254",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0261",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0262",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0269",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0270",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0277",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0278",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0285",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0286",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0293",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0294",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "correct_null",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0301",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0302",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0309",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0310",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0317",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0318",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0325",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0326",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0333",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0334",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0341",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0342",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0349",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0350",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0357",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0358",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0365",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0366",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0373",
+      "doc_type": "pay_stub",
+      "layout": "ps_letter",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0374",
+      "doc_type": "pay_stub",
+      "layout": "ps_hours_rate",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0002",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0001,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0004",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0010",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0012",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0018",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0020",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0026",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0028",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0034",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0036",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0042",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0044",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct_null",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0050",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0052",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0058",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0060",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0066",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0068",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0074",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0076",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0082",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0084",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0090",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct_null",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0092",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0098",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0100",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0106",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0108",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0114",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0116",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0122",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0124",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct_null",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0130",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0132",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0138",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0140",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0146",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0148",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0154",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0156",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0162",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct_null",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0164",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0170",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0172",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0178",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0180",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0186",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0188",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0194",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct_null",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0196",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0202",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0204",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0210",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0212",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0218",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0220",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0226",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0228",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0234",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0236",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0242",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0244",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0250",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0252",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0258",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0260",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0266",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0268",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0274",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0276",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0282",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0284",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0290",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0292",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0298",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0300",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0306",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0308",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0314",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct_null",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0316",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0322",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0324",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0330",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0332",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0338",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0340",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0346",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0348",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0354",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0356",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0362",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0364",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0370",
+      "doc_type": "bank_statement",
+      "layout": "bs_transactions",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0372",
+      "doc_type": "bank_statement",
+      "layout": "bs_stacked",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0004",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0001,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0006",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0012",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0014",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0020",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0022",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0028",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0030",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0036",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0038",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0044",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0046",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0052",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0054",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0060",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0062",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0068",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0070",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0076",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0078",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0084",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0086",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0092",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0094",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0100",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0102",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0108",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0110",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0116",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0118",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0124",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0126",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0132",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0134",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0140",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0142",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0148",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0150",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0156",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0158",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0164",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0166",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0172",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0174",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0180",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0182",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0188",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0190",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0196",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0198",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0204",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0206",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0212",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0214",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0220",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0222",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0228",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0230",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0236",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0238",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0244",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0246",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0252",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0254",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0260",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0262",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0268",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0270",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0276",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0278",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0284",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0286",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0292",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0294",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0300",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0302",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0308",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0310",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0316",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0318",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0324",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0326",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0332",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0334",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0340",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0342",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0348",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0350",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0356",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0358",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0364",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0366",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0372",
+      "doc_type": "credit_report",
+      "layout": "cr_tri_merge",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0374",
+      "doc_type": "credit_report",
+      "layout": "cr_letter",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0001",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0001,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0005",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0009",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0013",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0017",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0021",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0025",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0029",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0033",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0037",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0041",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0045",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0049",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0053",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0057",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0061",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0065",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0069",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0073",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0077",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "correct_null",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0081",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0085",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0089",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0093",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0097",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0101",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0105",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0109",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0113",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0117",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0121",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0125",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0129",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0133",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0137",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0141",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0145",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0149",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0153",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0157",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0161",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0165",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0169",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0173",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0177",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0181",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0185",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "correct_null",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0189",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0193",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0197",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0201",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0205",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0209",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0213",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0217",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0221",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0225",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0229",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0233",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "correct_null",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0237",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0241",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0245",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0249",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0253",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0257",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0261",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0265",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0269",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0273",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0277",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0281",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0285",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0289",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0293",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0297",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0301",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0305",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0309",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0313",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0317",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0321",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0325",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0329",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0333",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0337",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0341",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0345",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0349",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0353",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0357",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "correct_null",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0361",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "correct_null",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0365",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0369",
+      "doc_type": "id_document",
+      "layout": "id_license",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0373",
+      "doc_type": "id_document",
+      "layout": "id_european",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    }
+  ]
+}

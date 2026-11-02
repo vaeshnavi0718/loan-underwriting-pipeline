@@ -1,0 +1,2207 @@
+{
+  "suite": "extraction",
+  "extractor": "regex",
+  "split": "val_seen",
+  "summary": {
+    "documents": 120,
+    "field_accuracy": 0.2067,
+    "present_fields": {
+      "total": 288,
+      "correct": 50,
+      "wrong": 0,
+      "missed": 238
+    },
+    "absent_fields": {
+      "total": 12,
+      "correct_null": 12,
+      "hallucinated": 0
+    },
+    "documents_all_correct": 20,
+    "valid_json": 120,
+    "mean_latency_s": 0.0,
+    "mean_tokens": null,
+    "total_cost_usd": null,
+    "by_field": {
+      "bank_statement.average_monthly_balance": {
+        "correct": 7,
+        "total": 30
+      },
+      "bank_statement.monthly_deposits": {
+        "correct": 5,
+        "total": 30
+      },
+      "credit_report.credit_score": {
+        "correct": 7,
+        "total": 30
+      },
+      "credit_report.existing_monthly_debt": {
+        "correct": 5,
+        "total": 30
+      },
+      "credit_report.payment_history": {
+        "correct": 5,
+        "total": 30
+      },
+      "id_document.date_of_birth": {
+        "correct": 6,
+        "total": 30
+      },
+      "id_document.id_status": {
+        "correct": 8,
+        "total": 30
+      },
+      "id_document.name": {
+        "correct": 5,
+        "total": 30
+      },
+      "pay_stub.employer_name": {
+        "correct": 8,
+        "total": 30
+      },
+      "pay_stub.gross_monthly_income": {
+        "correct": 6,
+        "total": 30
+      }
+    },
+    "by_layout": {
+      "bs_codes": {
+        "correct": 0,
+        "total": 10
+      },
+      "bs_european": {
+        "correct": 1,
+        "total": 10
+      },
+      "bs_legacy": {
+        "correct": 10,
+        "total": 10
+      },
+      "bs_letter": {
+        "correct": 1,
+        "total": 10
+      },
+      "bs_multi_month": {
+        "correct": 0,
+        "total": 10
+      },
+      "bs_summary": {
+        "correct": 0,
+        "total": 10
+      },
+      "cr_bureau": {
+        "correct": 0,
+        "total": 15
+      },
+      "cr_codes": {
+        "correct": 1,
+        "total": 15
+      },
+      "cr_legacy": {
+        "correct": 15,
+        "total": 15
+      },
+      "cr_score_trend": {
+        "correct": 0,
+        "total": 15
+      },
+      "cr_stacked": {
+        "correct": 0,
+        "total": 15
+      },
+      "cr_tradelines": {
+        "correct": 1,
+        "total": 15
+      },
+      "id_codes": {
+        "correct": 0,
+        "total": 15
+      },
+      "id_kyc_report": {
+        "correct": 1,
+        "total": 15
+      },
+      "id_legacy": {
+        "correct": 15,
+        "total": 15
+      },
+      "id_letter": {
+        "correct": 0,
+        "total": 15
+      },
+      "id_passport": {
+        "correct": 2,
+        "total": 15
+      },
+      "id_stacked": {
+        "correct": 1,
+        "total": 15
+      },
+      "ps_european": {
+        "correct": 0,
+        "total": 10
+      },
+      "ps_key_value": {
+        "correct": 2,
+        "total": 10
+      },
+      "ps_legacy": {
+        "correct": 10,
+        "total": 10
+      },
+      "ps_letterhead": {
+        "correct": 1,
+        "total": 10
+      },
+      "ps_stacked": {
+        "correct": 0,
+        "total": 10
+      },
+      "ps_ytd_table": {
+        "correct": 1,
+        "total": 10
+      }
+    }
+  },
+  "documents": [
+    {
+      "doc_id": "PS-0000",
+      "doc_type": "pay_stub",
+      "layout": "ps_legacy",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": "Riverstone Retail Corp.",
+        "gross_monthly_income": 3208.33
+      },
+      "outcomes": {
+        "employer_name": "correct",
+        "gross_monthly_income": "correct"
+      },
+      "latency_s": 0.0001,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0016",
+      "doc_type": "pay_stub",
+      "layout": "ps_legacy",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": "Bright Path Construction Group",
+        "gross_monthly_income": 2750.0
+      },
+      "outcomes": {
+        "employer_name": "correct",
+        "gross_monthly_income": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0049",
+      "doc_type": "pay_stub",
+      "layout": "ps_key_value",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "correct_null",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0074",
+      "doc_type": "pay_stub",
+      "layout": "ps_ytd_table",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0082",
+      "doc_type": "pay_stub",
+      "layout": "ps_ytd_table",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0083",
+      "doc_type": "pay_stub",
+      "layout": "ps_stacked",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0087",
+      "doc_type": "pay_stub",
+      "layout": "ps_european",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0088",
+      "doc_type": "pay_stub",
+      "layout": "ps_legacy",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": "Cascade Software Co.",
+        "gross_monthly_income": 2791.67
+      },
+      "outcomes": {
+        "employer_name": "correct",
+        "gross_monthly_income": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0132",
+      "doc_type": "pay_stub",
+      "layout": "ps_letterhead",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0144",
+      "doc_type": "pay_stub",
+      "layout": "ps_legacy",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": "Harborline Foods Co.",
+        "gross_monthly_income": 10208.33
+      },
+      "outcomes": {
+        "employer_name": "correct",
+        "gross_monthly_income": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0151",
+      "doc_type": "pay_stub",
+      "layout": "ps_european",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0171",
+      "doc_type": "pay_stub",
+      "layout": "ps_stacked",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0178",
+      "doc_type": "pay_stub",
+      "layout": "ps_ytd_table",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "correct_null",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0196",
+      "doc_type": "pay_stub",
+      "layout": "ps_letterhead",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0209",
+      "doc_type": "pay_stub",
+      "layout": "ps_key_value",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "correct_null",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0211",
+      "doc_type": "pay_stub",
+      "layout": "ps_stacked",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0228",
+      "doc_type": "pay_stub",
+      "layout": "ps_letterhead",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0239",
+      "doc_type": "pay_stub",
+      "layout": "ps_european",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0259",
+      "doc_type": "pay_stub",
+      "layout": "ps_stacked",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0264",
+      "doc_type": "pay_stub",
+      "layout": "ps_legacy",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": "Northbridge Insurance Group Corp.",
+        "gross_monthly_income": 8083.33
+      },
+      "outcomes": {
+        "employer_name": "correct",
+        "gross_monthly_income": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0281",
+      "doc_type": "pay_stub",
+      "layout": "ps_key_value",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0283",
+      "doc_type": "pay_stub",
+      "layout": "ps_stacked",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0290",
+      "doc_type": "pay_stub",
+      "layout": "ps_ytd_table",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0295",
+      "doc_type": "pay_stub",
+      "layout": "ps_european",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0308",
+      "doc_type": "pay_stub",
+      "layout": "ps_letterhead",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0313",
+      "doc_type": "pay_stub",
+      "layout": "ps_key_value",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0329",
+      "doc_type": "pay_stub",
+      "layout": "ps_key_value",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0330",
+      "doc_type": "pay_stub",
+      "layout": "ps_ytd_table",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0340",
+      "doc_type": "pay_stub",
+      "layout": "ps_letterhead",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "PS-0343",
+      "doc_type": "pay_stub",
+      "layout": "ps_european",
+      "valid_json": true,
+      "predicted": {
+        "employer_name": null,
+        "gross_monthly_income": null
+      },
+      "outcomes": {
+        "employer_name": "missed",
+        "gross_monthly_income": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0006",
+      "doc_type": "bank_statement",
+      "layout": "bs_codes",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0001,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0008",
+      "doc_type": "bank_statement",
+      "layout": "bs_legacy",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": 36489.37,
+        "monthly_deposits": 5971.68
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct",
+        "monthly_deposits": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0023",
+      "doc_type": "bank_statement",
+      "layout": "bs_letter",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0031",
+      "doc_type": "bank_statement",
+      "layout": "bs_letter",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0033",
+      "doc_type": "bank_statement",
+      "layout": "bs_summary",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0046",
+      "doc_type": "bank_statement",
+      "layout": "bs_codes",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0047",
+      "doc_type": "bank_statement",
+      "layout": "bs_letter",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct_null",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0072",
+      "doc_type": "bank_statement",
+      "layout": "bs_legacy",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": 27323.94,
+        "monthly_deposits": 13761.31
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct",
+        "monthly_deposits": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0075",
+      "doc_type": "bank_statement",
+      "layout": "bs_multi_month",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0078",
+      "doc_type": "bank_statement",
+      "layout": "bs_codes",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0109",
+      "doc_type": "bank_statement",
+      "layout": "bs_european",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0131",
+      "doc_type": "bank_statement",
+      "layout": "bs_multi_month",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0137",
+      "doc_type": "bank_statement",
+      "layout": "bs_summary",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0165",
+      "doc_type": "bank_statement",
+      "layout": "bs_european",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0183",
+      "doc_type": "bank_statement",
+      "layout": "bs_letter",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0189",
+      "doc_type": "bank_statement",
+      "layout": "bs_european",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct_null",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0203",
+      "doc_type": "bank_statement",
+      "layout": "bs_multi_month",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0238",
+      "doc_type": "bank_statement",
+      "layout": "bs_codes",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0241",
+      "doc_type": "bank_statement",
+      "layout": "bs_summary",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0257",
+      "doc_type": "bank_statement",
+      "layout": "bs_summary",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0280",
+      "doc_type": "bank_statement",
+      "layout": "bs_legacy",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": 712.27,
+        "monthly_deposits": 5676.6
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct",
+        "monthly_deposits": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0294",
+      "doc_type": "bank_statement",
+      "layout": "bs_codes",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0317",
+      "doc_type": "bank_statement",
+      "layout": "bs_european",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0331",
+      "doc_type": "bank_statement",
+      "layout": "bs_multi_month",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0336",
+      "doc_type": "bank_statement",
+      "layout": "bs_legacy",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": 9045.09,
+        "monthly_deposits": 13251.16
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct",
+        "monthly_deposits": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0351",
+      "doc_type": "bank_statement",
+      "layout": "bs_letter",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0352",
+      "doc_type": "bank_statement",
+      "layout": "bs_legacy",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": 6737.73,
+        "monthly_deposits": 12184.09
+      },
+      "outcomes": {
+        "average_monthly_balance": "correct",
+        "monthly_deposits": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0355",
+      "doc_type": "bank_statement",
+      "layout": "bs_multi_month",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0357",
+      "doc_type": "bank_statement",
+      "layout": "bs_european",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "BS-0369",
+      "doc_type": "bank_statement",
+      "layout": "bs_summary",
+      "valid_json": true,
+      "predicted": {
+        "average_monthly_balance": null,
+        "monthly_deposits": null
+      },
+      "outcomes": {
+        "average_monthly_balance": "missed",
+        "monthly_deposits": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0015",
+      "doc_type": "credit_report",
+      "layout": "cr_score_trend",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0001,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0017",
+      "doc_type": "credit_report",
+      "layout": "cr_bureau",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0018",
+      "doc_type": "credit_report",
+      "layout": "cr_tradelines",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "correct_null",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0026",
+      "doc_type": "credit_report",
+      "layout": "cr_tradelines",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0029",
+      "doc_type": "credit_report",
+      "layout": "cr_codes",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0037",
+      "doc_type": "credit_report",
+      "layout": "cr_codes",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "correct_null",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0057",
+      "doc_type": "credit_report",
+      "layout": "cr_bureau",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0058",
+      "doc_type": "credit_report",
+      "layout": "cr_tradelines",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0059",
+      "doc_type": "credit_report",
+      "layout": "cr_stacked",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0080",
+      "doc_type": "credit_report",
+      "layout": "cr_legacy",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": 603,
+        "existing_monthly_debt": 1145.53,
+        "payment_history": "3 payments 30+ days late in last 24 months"
+      },
+      "outcomes": {
+        "credit_score": "correct",
+        "existing_monthly_debt": "correct",
+        "payment_history": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0088",
+      "doc_type": "credit_report",
+      "layout": "cr_legacy",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": 778,
+        "existing_monthly_debt": 2019.33,
+        "payment_history": "2 payments 30+ days late in last 12 months"
+      },
+      "outcomes": {
+        "credit_score": "correct",
+        "existing_monthly_debt": "correct",
+        "payment_history": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0089",
+      "doc_type": "credit_report",
+      "layout": "cr_bureau",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0101",
+      "doc_type": "credit_report",
+      "layout": "cr_codes",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0113",
+      "doc_type": "credit_report",
+      "layout": "cr_bureau",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0115",
+      "doc_type": "credit_report",
+      "layout": "cr_stacked",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0121",
+      "doc_type": "credit_report",
+      "layout": "cr_bureau",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0147",
+      "doc_type": "credit_report",
+      "layout": "cr_stacked",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0151",
+      "doc_type": "credit_report",
+      "layout": "cr_score_trend",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0154",
+      "doc_type": "credit_report",
+      "layout": "cr_tradelines",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0160",
+      "doc_type": "credit_report",
+      "layout": "cr_legacy",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": 527,
+        "existing_monthly_debt": 1114.34,
+        "payment_history": "1 payment 60+ days late in last 24 months"
+      },
+      "outcomes": {
+        "credit_score": "correct",
+        "existing_monthly_debt": "correct",
+        "payment_history": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0189",
+      "doc_type": "credit_report",
+      "layout": "cr_codes",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0199",
+      "doc_type": "credit_report",
+      "layout": "cr_score_trend",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0203",
+      "doc_type": "credit_report",
+      "layout": "cr_stacked",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0218",
+      "doc_type": "credit_report",
+      "layout": "cr_tradelines",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0259",
+      "doc_type": "credit_report",
+      "layout": "cr_stacked",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0272",
+      "doc_type": "credit_report",
+      "layout": "cr_legacy",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": 726,
+        "existing_monthly_debt": 3461.54,
+        "payment_history": "1 payment 60+ days late in last 24 months"
+      },
+      "outcomes": {
+        "credit_score": "correct",
+        "existing_monthly_debt": "correct",
+        "payment_history": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0279",
+      "doc_type": "credit_report",
+      "layout": "cr_score_trend",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0303",
+      "doc_type": "credit_report",
+      "layout": "cr_score_trend",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0341",
+      "doc_type": "credit_report",
+      "layout": "cr_codes",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": null,
+        "existing_monthly_debt": null,
+        "payment_history": null
+      },
+      "outcomes": {
+        "credit_score": "missed",
+        "existing_monthly_debt": "missed",
+        "payment_history": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "CR-0344",
+      "doc_type": "credit_report",
+      "layout": "cr_legacy",
+      "valid_json": true,
+      "predicted": {
+        "credit_score": 715,
+        "existing_monthly_debt": 2694.07,
+        "payment_history": "No late payments in 12 months"
+      },
+      "outcomes": {
+        "credit_score": "correct",
+        "existing_monthly_debt": "correct",
+        "payment_history": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0008",
+      "doc_type": "id_document",
+      "layout": "id_legacy",
+      "valid_json": true,
+      "predicted": {
+        "name": "Hayden Whitfield",
+        "date_of_birth": "1995-09-19",
+        "id_status": "verified"
+      },
+      "outcomes": {
+        "name": "correct",
+        "date_of_birth": "correct",
+        "id_status": "correct"
+      },
+      "latency_s": 0.0001,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0011",
+      "doc_type": "id_document",
+      "layout": "id_kyc_report",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0031",
+      "doc_type": "id_document",
+      "layout": "id_letter",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0044",
+      "doc_type": "id_document",
+      "layout": "id_stacked",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0050",
+      "doc_type": "id_document",
+      "layout": "id_passport",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0051",
+      "doc_type": "id_document",
+      "layout": "id_kyc_report",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0070",
+      "doc_type": "id_document",
+      "layout": "id_codes",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0083",
+      "doc_type": "id_document",
+      "layout": "id_kyc_report",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "correct_null",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0084",
+      "doc_type": "id_document",
+      "layout": "id_stacked",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0095",
+      "doc_type": "id_document",
+      "layout": "id_letter",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0098",
+      "doc_type": "id_document",
+      "layout": "id_passport",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0102",
+      "doc_type": "id_document",
+      "layout": "id_codes",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0112",
+      "doc_type": "id_document",
+      "layout": "id_legacy",
+      "valid_json": true,
+      "predicted": {
+        "name": "Alex Ellis",
+        "date_of_birth": "1987-10-02",
+        "id_status": "verified"
+      },
+      "outcomes": {
+        "name": "correct",
+        "date_of_birth": "correct",
+        "id_status": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0122",
+      "doc_type": "id_document",
+      "layout": "id_passport",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0134",
+      "doc_type": "id_document",
+      "layout": "id_codes",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0155",
+      "doc_type": "id_document",
+      "layout": "id_kyc_report",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0219",
+      "doc_type": "id_document",
+      "layout": "id_kyc_report",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0228",
+      "doc_type": "id_document",
+      "layout": "id_stacked",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0230",
+      "doc_type": "id_document",
+      "layout": "id_codes",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0234",
+      "doc_type": "id_document",
+      "layout": "id_passport",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0247",
+      "doc_type": "id_document",
+      "layout": "id_letter",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0256",
+      "doc_type": "id_document",
+      "layout": "id_legacy",
+      "valid_json": true,
+      "predicted": {
+        "name": "Jamie Price",
+        "date_of_birth": "1971-12-02",
+        "id_status": "verified"
+      },
+      "outcomes": {
+        "name": "correct",
+        "date_of_birth": "correct",
+        "id_status": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0284",
+      "doc_type": "id_document",
+      "layout": "id_stacked",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "correct_null"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0294",
+      "doc_type": "id_document",
+      "layout": "id_codes",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0311",
+      "doc_type": "id_document",
+      "layout": "id_letter",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0322",
+      "doc_type": "id_document",
+      "layout": "id_passport",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0328",
+      "doc_type": "id_document",
+      "layout": "id_legacy",
+      "valid_json": true,
+      "predicted": {
+        "name": "Reese Nguyen",
+        "date_of_birth": "2003-11-21",
+        "id_status": "verified"
+      },
+      "outcomes": {
+        "name": "correct",
+        "date_of_birth": "correct",
+        "id_status": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0344",
+      "doc_type": "id_document",
+      "layout": "id_legacy",
+      "valid_json": true,
+      "predicted": {
+        "name": "Emerson Price",
+        "date_of_birth": "1966-04-25",
+        "id_status": "verified"
+      },
+      "outcomes": {
+        "name": "correct",
+        "date_of_birth": "correct",
+        "id_status": "correct"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0348",
+      "doc_type": "id_document",
+      "layout": "id_stacked",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    },
+    {
+      "doc_id": "ID-0367",
+      "doc_type": "id_document",
+      "layout": "id_letter",
+      "valid_json": true,
+      "predicted": {
+        "name": null,
+        "date_of_birth": null,
+        "id_status": null
+      },
+      "outcomes": {
+        "name": "missed",
+        "date_of_birth": "missed",
+        "id_status": "missed"
+      },
+      "latency_s": 0.0,
+      "usage": {}
+    }
+  ]
+}

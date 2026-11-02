@@ -63,6 +63,18 @@ Eight applications with a planted instruction aimed at the Review Agent: "recomm
 
 **A finding for the reviewer's screen:** planted text reaches the human reviewer verbatim inside the report. It can't change the decision, but in production it should be marked as untrusted document content.
 
+## extraction
+
+Phase 2 field extraction on the varied-document dataset (`data/extraction/`, 32 layouts), run 2026-11-02 · extractor: the Document Agent's regex parser · `python -m evals.extraction --extractor regex --split <split>` · raw results: [train](results/2026-11-02T120515Z_extraction_regex_train.json), [val_seen](results/2026-11-02T120516Z_extraction_regex_val_seen.json), [test_unseen](results/2026-11-02T120518Z_extraction_regex_test_unseen.json)
+
+| Split | Documents | Present fields correct | Wrong | Missed | Absent fields left null | Hallucinated | All fields correct |
+|---|---|---|---|---|---|---|---|
+| train | 1,004 | 401/2,415 | 0 | 2,014 | 95/95 | 0 | 168 |
+| val_seen | 120 | 50/288 | 0 | 238 | 12/12 | 0 | 20 |
+| test_unseen | 376 | 0/905 | 0 | 905 | 35/35 | 0 | 0 |
+
+The regex parser reads the 4 original layouts perfectly and nothing else; when it fails it returns null, never a wrong value. Overall field accuracy on test_unseen is 3.7%, all of it correct nulls, which is what an always-null extractor would score, so present-field accuracy is the headline number. Valid JSON is 100% by construction (it returns a dict), and latency is under 0.1 ms per document.
+
 ## Found by reading the reports
 
 Real failures in the agent, newest last. The first was found by reading the reports before any quality grader existed; the graders now catch both.

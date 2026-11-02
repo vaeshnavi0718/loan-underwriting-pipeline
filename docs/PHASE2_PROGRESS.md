@@ -44,3 +44,16 @@ Splits: train 1,004 · val_seen 120 · test_unseen 376 (251 / 30 / 94 per docume
 - Each layout family is still in training for another type: codes (bs/cr/id), letters (bs/id), tables (ps/cr/id), mobile-style (ps/cr/id), EU formats (ps/bs), pick-one-of-many (bs_multi_month, cr_score_trend).
 - The 4 original layouts stay in train, so the regex baseline isn't scored on the layout it was written for.
 - val_seen = 10% of each training layout (seeded sample), so seen and unseen layouts are scored side by side; the gap between them is the generalization gap.
+
+## Task 3: extraction suite (branch `phase-2-extraction-suite`)
+
+Module: `evals/extraction.py` (`python -m evals.extraction --extractor regex --split test_unseen [--limit N]`). Results: `evals/results/*_extraction_<extractor>_<split>.json`.
+
+- [x] 3a. Scoring module, unit tests (`tests/test_extraction_suite.py`, no LLM), regex run on all 3 splits
+- [x] 3b. Results in RESULTS.md and the handbook, PR
+
+- Each field is scored as correct, wrong, missed (null but present), hallucinated (a value for a field the document leaves out) or correct_null.
+- Comparison is semantic: money within half a cent, dates in any common format, text fields case- and whitespace-insensitive. A format mistake isn't counted as an extraction mistake.
+- Output that isn't a JSON object counts as invalid JSON, and every present field in it is scored as missed.
+- An extractor returns (output, usage); usage carries tokens and cost, so the Groq baseline can report cost per document.
+- Regex (2026-11-02), present fields correct: train 401/2,415, val_seen 50/288, test_unseen 0/905. It never returned a wrong value or a hallucinated one; it only finds the original layouts (100% there). Overall field accuracy on test_unseen is 3.7%, and all of that is correct nulls, which is what an extractor that always says null would score. So present-field accuracy is the better headline.
