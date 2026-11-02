@@ -1,6 +1,7 @@
 """Checks the Phase 2 extraction dataset generator: labels match what the PDFs print."""
 import json
 import os
+import shutil
 import subprocess
 import sys
 from collections import Counter
@@ -74,3 +75,33 @@ def test_committed_labels_match_the_seed(dataset):
     assert len(committed) == 1500
     for row in rows:
         assert committed[row["doc_id"]] == row
+
+
+SPLITS = os.path.join(ROOT, "data", "extraction", "splits.json")
+
+
+def test_splits_keep_test_layouts_out_of_training():
+    split_file = json.load(open(SPLITS))
+    labels = {r["doc_id"]: r for r in map(json.loads, open(COMMITTED))}
+    splits = split_file["splits"]
+    assert sorted(splits) == sorted(labels)
+
+    layouts = {name: set() for name in ("train", "val_seen", "test_unseen")}
+    types = {name: set() for name in layouts}
+    for doc_id, name in splits.items():
+        layouts[name].add(labels[doc_id]["layout"])
+        types[name].add(labels[doc_id]["doc_type"])
+    held = {layout for group in split_file["held_out_layouts"].values() for layout in group}
+    assert layouts["test_unseen"] == held
+    assert not held & (layouts["train"] | layouts["val_seen"])
+    assert layouts["val_seen"] == layouts["train"]
+    assert all(len(t) == 4 for t in types.values())
+    # the original layouts stay in training so the regex baseline isn't scored on its home turf
+    assert {"ps_legacy", "bs_legacy", "cr_legacy", "id_legacy"} <= layouts["train"]
+
+
+def test_splits_are_reproducible(tmp_path):
+    shutil.copy(COMMITTED, tmp_path / "labels.jsonl")
+    subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "split_extraction_dataset.py"),
+                    "--data", str(tmp_path)], check=True, capture_output=True)
+    assert json.load(open(tmp_path / "splits.json")) == json.load(open(SPLITS))

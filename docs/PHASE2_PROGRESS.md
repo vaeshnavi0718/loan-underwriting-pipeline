@@ -30,3 +30,17 @@ Script: `scripts/generate_extraction_dataset.py`. Output: `data/extraction/docs/
 - Full run: 1,500 documents (375 per type, 46 or 47 per layout) in under a second; 142 have a missing field. `tests/test_extraction_dataset.py` (no LLM, ~1 s) regenerates 96 documents and checks printed values, balance, nulls and that they match the committed labels.
 
 ## Next: Task 2, the layout split (train layouts vs never-seen test layouts)
+
+## Task 2: layout split (branch `phase-2-layout-split`, based on the task 1 branch)
+
+Script: `scripts/split_extraction_dataset.py`. Output: `data/extraction/splits.json` (committed).
+
+- [x] 2a. Split script, splits.json, tests
+- [ ] 2b. Counts in the handbook, PR (after #15 is merged, rebase onto main)
+
+Splits: train 1,004 · val_seen 120 · test_unseen 376 (251 / 30 / 94 per document type).
+
+- test_unseen holds out 2 layouts per type: `ps_hours_rate`, `ps_letter`, `bs_transactions`, `bs_stacked`, `cr_tri_merge`, `cr_letter`, `id_license`, `id_european`.
+- Each layout family is still in training for another type: codes (bs/cr/id), letters (bs/id), tables (ps/cr/id), mobile-style (ps/cr/id), EU formats (ps/bs), pick-one-of-many (bs_multi_month, cr_score_trend).
+- The 4 original layouts stay in train, so the regex baseline isn't scored on the layout it was written for.
+- val_seen = 10% of each training layout (seeded sample), so seen and unseen layouts are scored side by side; the gap between them is the generalization gap.
